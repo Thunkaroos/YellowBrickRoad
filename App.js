@@ -17,7 +17,7 @@ import {
   TouchableHighlight,
   StatusBar
 } from "react-native";
-import { Container, Tabs, Tab, TabHeading, Spinner } from "native-base";
+import { Container, Tabs, Tab, TabHeading, Spinner, Header } from "native-base";
 
 import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 
@@ -72,27 +72,42 @@ export default class App extends Component {
   // Presents the user with a choice of an AR or VR experience
   _getExperienceSelector() {
     return (
-      <View style={styles.outer}>
-        <StatusBar barStyle="automatic" backgroundColor="#6a51ae" />
-        <View style={styles.inner}>
-          <Text style={styles.titleText}>Choose your desired experience:</Text>
-
-          <TouchableHighlight
-            style={styles.buttons}
-            onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
+      <Container>
+        <StatusBar barStyle="default" backgroundColor="#6a51ae" />
+        <Header style={styles.header} hasTabs />
+        <Tabs>
+          <Tab
+            heading={
+              <TabHeading style={styles.header}>
+                <Icon name="ios-information-circle" />
+                <Text>AR</Text>
+              </TabHeading>
+            }
           >
-            <Text style={styles.buttonText}>AR</Text>
-          </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.buttons}
+              onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
+              underlayColor={"#68a0ff"}
+            >
+              <Text style={styles.buttonText}>AR</Text>
+            </TouchableHighlight>
+          </Tab>
+        </Tabs>
+        {/* <View style={styles.outer}>
+          <View style={styles.inner}>
+            <Text style={styles.titleText}>
+              Choose your desired experience:
+            </Text> */}
 
-          {/* <TouchableHighlight style={styles.buttons}
+            {/* <TouchableHighlight style={styles.buttons}
             onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
             underlayColor={'#68a0ff'} >
 
             <Text style={styles.buttonText}>VR</Text>
           </TouchableHighlight> */}
+          </View>
         </View>
-      </View>
+      </Container>
     );
   }
 
