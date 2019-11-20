@@ -11,3 +11,15 @@
 
 - Directions for subways and streets
 - Google maps integration
+
+### Tech Stack
+
+- React Native
+  - Used for mobile app development
+- Viro
+  - AR JS Library useful for development of AR apps
+- Node.js
+- GraphQL
+  - Storing user created tours/directions
+- Native Base
+  - UI Library for react native
