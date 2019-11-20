@@ -3,8 +3,10 @@
 import React, { Component } from "react";
 
 import { StyleSheet } from "react-native";
+import { Button } from 'native-base';
 
-import { ViroARScene, ViroText, ViroConstants } from "react-viro";
+import { ViroARScene, ViroText, ViroConstants, ViroButton } from "react-viro";
+import console from 'console';
 
 export default class HelloWorldSceneAR extends Component {
   constructor() {
@@ -17,6 +19,8 @@ export default class HelloWorldSceneAR extends Component {
 
     // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
+    this._onButtonGaze = this._onButtonGaze.bind(this);
+    this._onButtonTap = this._onButtonTap.bind(this);
   }
 
   render() {
@@ -28,8 +32,30 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0, -1]}
           style={styles.helloWorldTextStyle}
         />
-      </ViroARScene>
+      <ViroButton
+          source={require("../assets/button.png")}
+          // gazeSource={require("./res/button_on_gazing.jpg")}
+          tapSource={require("../assets/button.png")}
+          position={[1, 3, -5]}
+          height={2}
+          width={3}
+          onTap={() => console.log('Hello World!')}
+          onGaze={this._onButtonGaze} />
+      </ViroARScene> 
     );
+  }
+
+  _onButtonGaze() {
+    this.setState({
+        buttonStateTag: "onGaze"
+    });
+  }
+  _onButtonTap() {
+    this.setState({
+        buttonStateTag: "onTap"
+    });
+    console.log('Hello world!')
+    this.props.onExitViro();
   }
 
   _onInitialized(state, reason) {

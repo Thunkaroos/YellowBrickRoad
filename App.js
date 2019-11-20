@@ -17,7 +17,7 @@ import {
   TouchableHighlight,
   StatusBar
 } from "react-native";
-import { Container, Tabs, Tab, TabHeading, Spinner, Header } from "native-base";
+import { Container, Tabs, Tab, TabHeading, Spinner, Header, Icon, Button } from "native-base";
 
 import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 
@@ -46,7 +46,7 @@ export default class App extends Component {
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps
+      sharedProps: sharedProps,
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
@@ -73,40 +73,51 @@ export default class App extends Component {
   _getExperienceSelector() {
     return (
       <Container>
-        <StatusBar barStyle="default" backgroundColor="#6a51ae" />
+        <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
         <Header style={styles.header} hasTabs />
         <Tabs>
           <Tab
             heading={
               <TabHeading style={styles.header}>
-                <Icon name="ios-information-circle" />
+                <Text>Main Menu</Text>
+              </TabHeading>
+            }
+          ></Tab>
+          <Tab
+            heading={
+              <TabHeading style={styles.header}>
                 <Text>AR</Text>
               </TabHeading>
             }
           >
-            <TouchableHighlight
+            <Button
               style={styles.buttons}
               onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
               underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>AR</Text>
-            </TouchableHighlight>
+            </Button>
           </Tab>
+          <Tab
+            heading={
+              <TabHeading style={styles.header}>
+                <Text>Tours</Text>
+              </TabHeading>
+            }
+          ></Tab>
         </Tabs>
         {/* <View style={styles.outer}>
           <View style={styles.inner}>
             <Text style={styles.titleText}>
               Choose your desired experience:
             </Text> */}
-
-            {/* <TouchableHighlight style={styles.buttons}
+        {/* <TouchableHighlight style={styles.buttons}
             onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
             underlayColor={'#68a0ff'} >
-
             <Text style={styles.buttonText}>VR</Text>
           </TouchableHighlight> */}
-          </View>
-        </View>
+        {/* </View> */}
+        {/* </View> */}
       </Container>
     );
   }
@@ -117,6 +128,7 @@ export default class App extends Component {
       <ViroARSceneNavigator
         {...this.state.sharedProps}
         initialScene={{ scene: InitialARScene }}
+        onExitViro={this._exitViro}
       />
     );
   }
@@ -177,19 +189,23 @@ var styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 20
+    fontSize: 20,
+    margin: "auto",
   },
   buttons: {
-    height: 80,
-    width: 150,
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: "#68a0cf",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff"
+    alignSelf: "center",
+    backgroundColor: "blue",
+    height: 50,
+    width: 100,
+    textAlign: "center"
+    // paddingTop: 20,
+    // paddingBottom: 20,
+    // marginTop: 10,
+    // marginBottom: 10,
+    // backgroundColor: "#68a0cf",
+    // borderRadius: 10,
+    // borderWidth: 1,
+    // borderColor: "#fff"
   },
   exitButton: {
     height: 50,
