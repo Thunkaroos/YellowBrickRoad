@@ -17,9 +17,24 @@ import {
   TouchableHighlight,
   StatusBar
 } from "react-native";
-import { Container, Tabs, Tab, TabHeading, Spinner, Header, Icon, Button } from "native-base";
-
+import {
+  Container,
+  Tabs,
+  Tab,
+  TabHeading,
+  Spinner,
+  Header,
+  Icon,
+  Button,
+  Form,
+  Label,
+  Input,
+  Item,
+  Content
+} from "native-base";
 import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
+import AuthForm from "./client/js/components/auth-form";
+import ARView from "./client/js/components/AR-view";
 
 /*
  TODO: Insert your API key below
@@ -29,8 +44,8 @@ var sharedProps = {
 };
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require("./js/HelloWorldSceneAR");
-var InitialVRScene = require("./js/HelloWorldScene");
+var InitialARScene = require("./client/js/HelloWorldSceneAR");
+var InitialVRScene = require("./client/js/HelloWorldScene");
 
 var UNSET = "UNSET";
 var VR_NAVIGATOR_TYPE = "VR";
@@ -46,7 +61,7 @@ export default class App extends Component {
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps,
+      sharedProps: sharedProps
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
@@ -82,7 +97,9 @@ export default class App extends Component {
                 <Text>Main Menu</Text>
               </TabHeading>
             }
-          ></Tab>
+          >
+            <AuthForm />
+          </Tab>
           <Tab
             heading={
               <TabHeading style={styles.header}>
@@ -90,13 +107,10 @@ export default class App extends Component {
               </TabHeading>
             }
           >
-            <Button
-              style={styles.buttons}
-              onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
-              underlayColor={"#68a0ff"}
-            >
-              <Text style={styles.buttonText}>AR</Text>
-            </Button>
+            <ARView
+              _getExperienceButtonOnPress={this._getExperienceButtonOnPress}
+              AR_NAVIGATOR_TYPE={AR_NAVIGATOR_TYPE}
+            />
           </Tab>
           <Tab
             heading={
@@ -106,18 +120,6 @@ export default class App extends Component {
             }
           ></Tab>
         </Tabs>
-        {/* <View style={styles.outer}>
-          <View style={styles.inner}>
-            <Text style={styles.titleText}>
-              Choose your desired experience:
-            </Text> */}
-        {/* <TouchableHighlight style={styles.buttons}
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={'#68a0ff'} >
-            <Text style={styles.buttonText}>VR</Text>
-          </TouchableHighlight> */}
-        {/* </View> */}
-        {/* </View> */}
       </Container>
     );
   }
@@ -186,38 +188,10 @@ var styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 25
   },
-  buttonText: {
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 20,
-    margin: "auto",
-  },
-  buttons: {
-    alignSelf: "center",
-    backgroundColor: "blue",
-    height: 50,
-    width: 100,
-    textAlign: "center"
-    // paddingTop: 20,
-    // paddingBottom: 20,
-    // marginTop: 10,
-    // marginBottom: 10,
-    // backgroundColor: "#68a0cf",
-    // borderRadius: 10,
-    // borderWidth: 1,
-    // borderColor: "#fff"
-  },
   exitButton: {
-    height: 50,
-    width: 100,
-    paddingTop: 10,
-    paddingBottom: 10,
     marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: "#68a0cf",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff"
+    alignSelf: "center",
+    width: 100
   }
 });
 
