@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 
 import { StyleSheet } from "react-native";
-// import { Icon } from 'react-native-elements'
+
 import { Button } from 'native-base';
 
 import { ViroARScene, ViroText, ViroConstants, ViroButton, ViroARPlaneSelector } from "react-viro";
@@ -54,7 +54,7 @@ export default class HelloWorldSceneAR extends Component {
             <Viro3DObject
               source={require('./res/btn_right.obj')}
               position={[0, .5, 0]}
-              scale={[.2, .2, .2]}
+              materials={["btn_right"]}
               type="OBJ" />
             </ViroNode>
 
