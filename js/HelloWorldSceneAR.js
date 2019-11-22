@@ -3,9 +3,10 @@
 import React, { Component } from "react";
 
 import { StyleSheet } from "react-native";
+// import { Icon } from 'react-native-elements'
 import { Button } from 'native-base';
 
-import { ViroARScene, ViroText, ViroConstants, ViroButton } from "react-viro";
+import { ViroARScene, ViroText, ViroConstants, ViroButton, ViroARPlaneSelector } from "react-viro";
 import console from 'console';
 
 export default class HelloWorldSceneAR extends Component {
@@ -41,6 +42,22 @@ export default class HelloWorldSceneAR extends Component {
           width={3}
           onTap={() => console.log('Hello World!')}
           onGaze={this._onButtonGaze} />
+          {/* <ViroARPlaneSelector>
+          <Viro3DObject
+            source={require('')}
+            position={[0, .5, 0]}
+            scale={[.2, .2, .2]}
+            type="VRX" />
+            
+          </ViroARPlaneSelector> */}
+          <ViroNode position={[0,-1,0]} dragType="FixedToWorld" onDrag={()=>{}} >
+            <Viro3DObject
+              source={require('./res/btn_right.obj')}
+              position={[0, .5, 0]}
+              scale={[.2, .2, .2]}
+              type="OBJ" />
+            </ViroNode>
+
       </ViroARScene> 
     );
   }
@@ -80,3 +97,5 @@ var styles = StyleSheet.create({
 });
 
 module.exports = HelloWorldSceneAR;
+
+
