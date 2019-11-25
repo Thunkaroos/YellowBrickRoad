@@ -4,7 +4,10 @@ const path = require('path');
 const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
+<<<<<<< HEAD
 //require('./auth/secrets');
+=======
+>>>>>>> a02a62b3d258bb5e3bc0dd4e56ef623782baeb16
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -32,17 +35,18 @@ app.use(
 );
 
 app.use(morgan('dev'));
-app.use('/api', require('./api')); // matches all requests to /api
 
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api', require('./api')); // matches all requests to /api
+app.use('/auth', require('./auth')); // matches all requests to /api
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../public/index.html'));
+// });
 
 app.use(function(err, req, res, next) {
   console.error(err);
