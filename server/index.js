@@ -4,7 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
-require('./auth/secrets');
+//require('./auth/secrets');
 
 app.use(passport.initialize());
 app.use(passport.session());

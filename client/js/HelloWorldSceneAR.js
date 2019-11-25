@@ -16,6 +16,7 @@ import {
   ViroARPlaneSelector,
   ViroMaterials
 } from "react-viro";
+import Axios from 'axios'
 import console from "console";
 
 export default class HelloWorldSceneAR extends Component {
@@ -26,15 +27,24 @@ export default class HelloWorldSceneAR extends Component {
     this.state = {
       text: "Initializing AR...",
       dataPoints: [
-        [0, 0, 0],
-        [0, 0, -2]
+        [0,0,-1]
       ]
     };
+
+
 
     // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
     this._onButtonGaze = this._onButtonGaze.bind(this);
     this._onButtonTap = this._onButtonTap.bind(this);
+  }
+
+  async componentDidMount(){
+
+  }
+
+  getTourData(){
+    const {data} = Axios.get()
   }
 
   render() {
@@ -76,12 +86,12 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text: "Start Here!",
-        dataPoints: [
-          [0, 0, 0],
-          [0, 0, -9],
-          [10, 0, -9]
-        ]
+        text: "Start Here!"
+        // dataPoints: [
+        //   [0, 0, 0],
+        //   [0, 0, -9],
+        //   [10, 0, -9]
+        // ]
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
@@ -91,7 +101,11 @@ export default class HelloWorldSceneAR extends Component {
 
 ViroMaterials.createMaterials({
   brick: {
+    // roughness: 0.7,
+    // metalness: 0.3,
+    // lightingModel: "PBR",
     diffuseColor: "yellow"
+    // diffuseTexture: require('../assets/1K-brick_wall_white-diffuse.jpg')
   }
 });
 
