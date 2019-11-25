@@ -1,7 +1,9 @@
-'use strict';
+"use strict";
 
-const db = require('./database');
-const User = require('./models/User');
+const db = require("./database");
+const User = require("./models/User");
+const Tour = require("./models/Tour");
+const Point = require("./models/Point");
 // The purpose of this module is to bring your Sequelize instance (`db`) together
 // with your models (which you should define in separate modules in this directory).
 // Example:
@@ -14,9 +16,13 @@ const User = require('./models/User');
 // Example:
 //
 // Puppy.belongsTo(Owner)
+User.hasMany(Tour);
+Tour.hasMany(Point);
 
 module.exports = {
   // Include your models in this exports object as well!
   db,
-  User
+  User,
+  Tour,
+  Point
 };
