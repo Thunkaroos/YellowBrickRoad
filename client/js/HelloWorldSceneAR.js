@@ -24,7 +24,11 @@ export default class HelloWorldSceneAR extends Component {
 
     // Set initial state here
     this.state = {
-      text: "Initializing AR..."
+      text: "Initializing AR...",
+      dataPoints: [
+        [0, 0, 0],
+        [0, 0, -2]
+      ]
     };
 
     // bind 'this' to functions
@@ -47,11 +51,7 @@ export default class HelloWorldSceneAR extends Component {
             dragType="FixedToWorld"
             onDrag={() => {}}
             position={[0, 0, -2]}
-            points={[
-              [0, 0, 0],
-              [0, 0, -9],
-              [10, 0, -9]
-            ]}
+            points={this.state.dataPoints}
             thickness={0.2}
             materials={["brick"]}
           />
@@ -76,7 +76,12 @@ export default class HelloWorldSceneAR extends Component {
   _onInitialized(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
-        text: "Start Here!"
+        text: "Start Here!",
+        dataPoints: [
+          [0, 0, 0],
+          [0, 0, -9],
+          [10, 0, -9]
+        ]
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
