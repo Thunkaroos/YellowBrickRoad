@@ -14,7 +14,9 @@ import {
   Body,
   Right
 } from "native-base";
-export default class TourView extends Component {
+import { connect } from "react-redux";
+
+export default class extends Component {
   render() {
     return (
       <Container>
@@ -39,13 +41,13 @@ export default class TourView extends Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  {/* <Icon name="ios-thumbs-up" /> */}
+                  <Icon active name="thumbs-up" />
                   <Text>12 Likes</Text>
                 </Button>
               </Left>
               <Body>
                 <Button transparent>
-                  {/* <Icon name="chatbubbles" /> */}
+                  <Icon active name="chatbubbles" />
                   <Text>4 Comments</Text>
                 </Button>
               </Body>
