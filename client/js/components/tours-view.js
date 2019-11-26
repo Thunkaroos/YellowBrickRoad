@@ -8,7 +8,6 @@ export default class TourView extends Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <List>
             <SmallTour />

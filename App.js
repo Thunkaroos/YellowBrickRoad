@@ -22,7 +22,6 @@ import {
   Tabs,
   Tab,
   TabHeading,
-  Spinner,
   Header,
   Icon,
   Button,

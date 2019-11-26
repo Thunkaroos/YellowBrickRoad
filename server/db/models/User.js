@@ -7,9 +7,6 @@ const db = require("../database");
 const User = db.define(
   "user",
   {
-    google_id: {
-      type: Sequelize.STRING
-    },
     email: {
       type: Sequelize.STRING,
       unique: true,
@@ -32,9 +29,7 @@ const User = db.define(
 
 // instance methods
 User.prototype.correctPassword = function(candidatePassword) {
-  return (
-    User.encryptPassword(candidatePassword, this.salt) === this.password
-  );
+  return User.encryptPassword(candidatePassword, this.salt) === this.password;
 };
 
 User.prototype.sanitize = function() {
