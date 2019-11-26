@@ -17,7 +17,7 @@ import {
   ViroMaterials
 } from "react-viro";
 import axios from 'axios'
-import console from "console";
+//import console from "console";
 
 export default class HelloWorldSceneAR extends Component {
   constructor() {
@@ -46,7 +46,7 @@ export default class HelloWorldSceneAR extends Component {
   async getTourData(id) {
     try {
       const {data} = await axios.get(`/api/points/${id}`)
-      console
+      console.log(data)
       this.setState({
         dataPoints: data
       })
