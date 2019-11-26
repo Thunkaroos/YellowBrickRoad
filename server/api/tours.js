@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const {Tour} = require('../db');
 
-router.get('/', (req,res,next) => {
+router.get('/', async (req,res,next) => {
   try {
-    const foundTours = Tour.findAll()
+    const foundTours = await Tour.findAll()
     if (foundTours) {
       res.status(200).send(foundTours)
     } else {

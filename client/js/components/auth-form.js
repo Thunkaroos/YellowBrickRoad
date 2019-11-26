@@ -51,8 +51,6 @@ export default class AuthForm extends Component {
       const email = this.state.email;
       const password = this.state.password;
 
-      console.log('How about here?');
-
       await axios.post('http://172.16.22.47:3000/auth/login', {email, password})
       .then((user) => {
         console.log(user.data);

@@ -86,7 +86,6 @@ export default class HelloWorldSceneAR extends Component {
     this.setState({
       buttonStateTag: "onTap"
     });
-    console.log("Start Here!");
     this.props.onExitViro();
   }
 

@@ -4,14 +4,14 @@ import axios from 'axios'
  const GET_ALL_TOURS = "GET_ALL_TOURS"
 
  const gotAllTours = tours => ({
-  action: GET_ALL_TOURS,
+  type: GET_ALL_TOURS,
   tours
 })
 
 export const getAllTours = dispatch => {
   return async dispatch => {
     try {
-      const {data} = await axios.get (`http://172.16.22.28:3000/api/tours`) 
+      const {data} = await axios.get(`http://172.16.22.47:3000/api/tours`)
       dispatch(gotAllTours(data)) 
     } catch (error) {
       console.log(error)
@@ -19,12 +19,12 @@ export const getAllTours = dispatch => {
   }
 }
 
-const initialState = []
+// const initialState = {}
 
-// or const initialState = {
-//   alltours: [],
-//   singleTour: {}
-// }
+const initialState = {
+  tours: [],
+  singleTour: {}
+}
 
 
 

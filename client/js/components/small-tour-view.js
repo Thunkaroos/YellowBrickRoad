@@ -11,7 +11,7 @@ export default class SmallTour extends Component {
   }
   render() {
     return (
-      <ListItem onClick={console.log("hello")}>
+      <ListItem onPress={() => console.log("hello")}>
         <Left>
           <Text>{this.props.name}</Text>
         </Left>
