@@ -16,7 +16,7 @@ import {
   ViroARPlaneSelector,
   ViroMaterials
 } from "react-viro";
-import Axios from 'axios'
+import axios from 'axios'
 import console from "console";
 
 export default class HelloWorldSceneAR extends Component {
@@ -39,12 +39,19 @@ export default class HelloWorldSceneAR extends Component {
     this._onButtonTap = this._onButtonTap.bind(this);
   }
 
-  async componentDidMount(){
-
+  componentDidMount() {
+    this.getTourData(1) //<---- Hardcoded!! change this!
   }
 
-  getTourData(){
-    const {data} = Axios.get()
+  async getTourData(id) {
+    try {
+      const {data} = await axios.get(`/api/points/${id}`)
+      this.setState({
+        dataPoints: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
