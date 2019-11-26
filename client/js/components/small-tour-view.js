@@ -1,29 +1,20 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Right,
-  ListItem
-} from "native-base";
+import { Text, ListItem, Left, Right } from "native-base";
 import { connect } from "react-redux";
+import BigTour from "./big-tour-view";
 
 //bring in Tour DB Data
 
 export default class SmallTour extends Component {
   render() {
     return (
-      <ListItem>
-        <Text>Tour Name</Text>
+      <ListItem onClick={console.log("hello")}>
+        <Left>
+          <Text>Tour Name</Text>
+        </Left>
+        <Right>
+          <Text>></Text>
+        </Right>
       </ListItem>
     );
   }
