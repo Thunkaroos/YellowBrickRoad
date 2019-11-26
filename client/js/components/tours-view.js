@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Container, Header, Content, List } from "native-base";
 import SmallTour from "./small-tour-view";
 import { connect } from "react-redux";
-import { getAllTours } from "../store/product";
+import { getAllTours } from "../store/tour";
 
 export default connect(
-  state => ({ tours: state.tours, user: state.user }),
+  state => ({ tours: state.tours}),
   dispatch => ({ getAllTours: () => dispatch(getAllTours()) })
 )(
   class TourView extends Component {

@@ -36,7 +36,7 @@ import {
 import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
-// import TourView from "./client/js/components/tours-view";
+import TourView from "./client/js/components/tours-view";
 
 /*
  TODO: Insert your API key below
@@ -122,7 +122,7 @@ export default class App extends Component {
               </TabHeading>
             }
           >
-            {/* <TourView /> */}
+            <TourView />
           </Tab>
         </Tabs>
       </Container>
