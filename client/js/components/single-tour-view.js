@@ -16,6 +16,8 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 
+//Show on click of SmallTour
+
 export default class extends Component {
   render() {
     return (
