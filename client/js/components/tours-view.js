@@ -1,30 +1,35 @@
-// import React, { Component } from "react";
-// import { Container, Header, Content, List } from "native-base";
-// import SmallTour from "./small-tour-view";
-// import { connect } from "react-redux";
-// import { getAllTours } from "../store/product";
+import React, { Component } from "react";
+import { Container, Header, Content, List } from "native-base";
+import SmallTour from "./small-tour-view";
+import { connect } from "react-redux";
+import { getAllTours } from "../store/product";
 
-// export default connect(
-//   state => ({ products: state.tours, user: state.user }),
-//   dispatch => ({ getAllTours: () => dispatch(getAllTours()) })
-// )(
-//   class TourView extends Component {
-//     componentDidMount() {
-//       this.props.getAllTours();
-//     }
+export default connect(
+  state => ({ tours: state.tours, user: state.user }),
+  dispatch => ({ getAllTours: () => dispatch(getAllTours()) })
+)(
+  class TourView extends Component {
+    constructor(props){
+      super(props)
+    }
+    componentDidMount() {
+      this.props.getAllTours();
+    }
 
-//     render() {
-//       return (
-//         <Container>
-//           <Content>
-//             <List>
-//               {this.props.tours.map(tour => (
-//                 <SmallTour key={tour.id} {...tour} />
-//               ))}
-//             </List>
-//           </Content>
-//         </Container>
-//       );
-//     }
-//   }
-// );
+    render() {
+      console.log(this.props)
+      return (
+        <Container>
+          <Text>Hello!</Text>
+          <Content>
+            <List>
+              {this.props.tours.map(tour => (
+                <SmallTour key={tour.id} {...tour} />
+              ))}
+            </List>
+          </Content>
+        </Container>
+      );
+    }
+  }
+);

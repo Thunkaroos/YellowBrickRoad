@@ -3,9 +3,9 @@ const {Tour} = require('../db');
 
 router.get('/', (req,res,next) => {
   try {
-    const foundTour = Tour.findAll()
-    if (foundTour) {
-      res.status(200).send(foundTour)
+    const foundTours = Tour.findAll()
+    if (foundTours) {
+      res.status(200).send(foundTours)
     } else {
       res.sendStatus(404)
     }
