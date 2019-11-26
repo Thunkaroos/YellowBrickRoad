@@ -46,6 +46,7 @@ export default class HelloWorldSceneAR extends Component {
   async getTourData(id) {
     try {
       const {data} = await axios.get(`/api/points/${id}`)
+      console
       this.setState({
         dataPoints: data
       })
