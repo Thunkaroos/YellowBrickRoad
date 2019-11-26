@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { Button } from "native-base";
 
@@ -35,6 +35,7 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
+      
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroText
           text={this.state.text}
@@ -57,6 +58,11 @@ export default class HelloWorldSceneAR extends Component {
           />
         </ViroNode>
       </ViroARScene>
+      
+
+      
+    
+    
     );
   }
 
