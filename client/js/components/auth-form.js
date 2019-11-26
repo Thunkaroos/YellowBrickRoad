@@ -35,9 +35,14 @@ export default class AuthForm extends Component {
     this.state = {
       email: '',
       password: '',
+      user: {},
+      error: '',
+      primaryForm: 'Login',
+      secondaryForm: 'Sign Up',
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeForm = this.changeForm.bind(this);
   }
 
   handleChange(name, value) {
@@ -47,26 +52,56 @@ export default class AuthForm extends Component {
   }
 
   async handleSubmit(e) {
-    // e.preventDefault();
+
+      const method = (this.state.primaryForm === 'Login') ? 'login' : 'signup';
+
       const email = this.state.email;
       const password = this.state.password;
 
-      console.log('How about here?');
-
-      await axios.post('http://172.16.22.47:3000/auth/login', {email, password})
+      await axios.post(`http://172.16.22.47:3000/auth/${method}`, {email, password})
       .then((user) => {
-        console.log(user.data);
+        this.setState({
+          user: user.data,
+        })
       })
       .catch((error) => {
-        console.error(error);
-      });
-
-  
-      
+        this.setState({
+          error: error.response.data
+        })
+      });   
   }
+
+  changeForm() {
+    if (this.state.primaryForm === 'Login') {
+      this.setState({
+        primaryForm: 'Sign Up',
+        secondaryForm: 'Login',
+      });
+    }
+    else {
+      this.setState({
+        primaryForm: 'Login',
+        secondaryForm: 'Sign Up',
+      })
+    }
+  }
+
   render() {
+    
+    let errorMessage;
+
+    if (this.state.error) {
+      errorMessage = (
+        <Text>Error: {this.state.error}</Text>
+      )
+    }
+    else {
+      errorMessage = null;
+    }
+        
     return (
       <View style={styles.menu}>
+        {errorMessage}
         <Form style={styles.Form}>
           <Item>
             <Input placeholder="Email" name = 'email' value = {this.state.email} onChangeText = {value => this.handleChange('email', value)} />
@@ -74,8 +109,11 @@ export default class AuthForm extends Component {
           <Item>
             <Input placeholder="Password" name = 'password' value = {this.state.password} onChangeText = {value => this.handleChange('password', value)} />
           </Item>
-          <Button style={styles.loginButton} onPress={this.handleSubmit}>
-            <Text style={styles.buttonText}>Login</Text>
+          <Button style={styles.loginButton} onPress = {this.handleSubmit}>
+            <Text style={styles.buttonText}>{this.state.primaryForm}</Text>
+          </Button>
+          <Button transparent style={styles.loginButton} onPress = {this.changeForm}>
+            <Text>{this.state.secondaryForm}</Text>
           </Button>
         </Form>
       </View>
@@ -94,5 +132,5 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: "center",
     width: 100
-  }
+  },
 });
