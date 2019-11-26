@@ -19,16 +19,15 @@ const Point = db.define("point", {
   },
 });
 
-// Point.orderTourPoints = (tourId) => {
-//   const tourPoints = this.findAll({
-//     where: {
-//       tourId
-//     }
-//   })
-//   let orderedPoints = tourPoints.sort((a, b) => a.stepNum - b.stepNum)
-//                             .map(tour => [Number(tour.x), Number(tour.y), Number(tour.z)])
-  
-//   return orderedPoints
-// }
+Point.orderTourPoints = async (tourId) => {
+  const tourPoints = await Point.findAll({
+    where: {
+      tourId
+    }
+  })
+  let orderedPoints = tourPoints.sort((a, b) => a.stepNum - b.stepNum)
+                                .map(tour => [Number(tour.x), Number(tour.y), Number(tour.z)])
+  return orderedPoints
+}
 
 module.exports = Point;
