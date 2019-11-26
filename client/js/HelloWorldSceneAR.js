@@ -45,8 +45,7 @@ export default class HelloWorldSceneAR extends Component {
 
   async getTourData(id) {
     try {
-      const {data} = await axios.get(`/api/points/${id}`)
-      console.log(data)
+      const {data} = await axios.get(`http://172.16.22.28:3000/api/points/${id}`) //<--- change for deployment
       this.setState({
         dataPoints: data
       })
@@ -95,11 +94,6 @@ export default class HelloWorldSceneAR extends Component {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"
-        // dataPoints: [
-        //   [0, 0, 0],
-        //   [0, 0, -9],
-        //   [10, 0, -9]
-        // ]
       });
     } else if (state == ViroConstants.TRACKING_NONE) {
       // Handle loss of tracking
