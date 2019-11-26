@@ -14,6 +14,7 @@ import {
   View,
   StyleSheet,
   PixelRatio,
+  Image,
   TouchableHighlight,
   StatusBar
 } from "react-native";
@@ -129,22 +130,64 @@ export default class App extends Component {
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator
+      
+      <View style={styles.outer}>
+      
+        <ViroARSceneNavigator
         {...this.state.sharedProps}
         initialScene={{ scene: InitialARScene }}
         onExitViro={this._exitViro}
-      />
+      />  
+     
+     
+
+     <View style={{position: 'absolute',  left: 0, right: 0, top: 10, alignItems: 'flex-start'}}>
+          <TouchableHighlight style={styles.buttons}
+          
+            underlayColor={'#00000000'} >
+            <Image source={require("./client/js/res/icon_left.png")} />
+          </TouchableHighlight>
+        </View>
+
+        <View style={{position: 'absolute',  left: 0, right: 0, top: 25, alignItems: 'flex-end'}}>
+          <TouchableHighlight style={styles.buttons}
+          
+            underlayColor={'#00000000'} >
+            <Image source={require("./client/js/res/icon_repeat.png")} />
+          </TouchableHighlight>
+        </View>
+
+        <View style={{position: 'absolute',  left: 10, right: 0, bottom: 20, alignItems: 'flex-start'}}>
+          <TouchableHighlight style={styles.buttons}
+          
+            underlayColor={'#00000000'} >
+            <Image source={require("./client/js/res/button_start.png")} />
+          </TouchableHighlight>
+        </View>
+
+        <View style={{position: 'absolute',  left: 0, right: 15, bottom: 20, alignItems: 'flex-end'}}>
+          <TouchableHighlight style={styles.buttons}
+          
+            underlayColor={'#00000000'} >
+            <Image source={require("./client/js/res/button_stop.png")} />
+          </TouchableHighlight>
+        </View>
+
+
+      </View>
     );
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
+      <View>
       <ViroVRSceneNavigator
         {...this.state.sharedProps}
         initialScene={{ scene: InitialVRScene }}
         onExitViro={this._exitViro}
       />
+      </View>
     );
   }
 
@@ -174,8 +217,7 @@ var styles = StyleSheet.create({
   outer: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "black"
+    alignItems: "flex-end"
   },
   inner: {
     flex: 1,
@@ -189,6 +231,18 @@ var styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     fontSize: 25
+  },
+  buttons : {
+    height: 80,
+    width: 80,
+    paddingTop:20,
+    paddingBottom:20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor:'#00000000',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#ffffff00',
   },
   exitButton: {
     marginTop: 10,

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import { StyleSheet, View } from "react-native";
 
-import { Button } from "native-base";
+import { Button} from "native-base";
 
 import {
   ViroNode,
@@ -35,7 +35,7 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      
+    
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroText
           text={this.state.text}
@@ -58,10 +58,6 @@ export default class HelloWorldSceneAR extends Component {
           />
         </ViroNode>
       </ViroARScene>
-      
-
-      
-    
     
     );
   }
@@ -103,7 +99,14 @@ var styles = StyleSheet.create({
     color: "#ffffff",
     textAlignVertical: "center",
     textAlign: "center"
-  }
+  },
+  outer : {
+    flex : 1,
+  },
+
+  arView: {
+    flex:1,
+  },
 });
 
 module.exports = HelloWorldSceneAR;
