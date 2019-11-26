@@ -6,11 +6,14 @@ import BigTour from "./big-tour-view";
 //bring in Tour DB Data
 
 export default class SmallTour extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (
-      <ListItem onClick={console.log("hello")}>
+      <ListItem onPress={() => console.log("hello")}>
         <Left>
-          <Text>Tour Name</Text>
+          <Text>{this.props.name}</Text>
         </Left>
         <Right>
           <Text>></Text>

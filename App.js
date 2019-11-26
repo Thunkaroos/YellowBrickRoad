@@ -8,6 +8,8 @@
  */
 
 import React, { Component } from "react";
+import {Provider} from 'react-redux'
+import store from './client/js/store/index.js'
 import {
   AppRegistry,
   Text,
@@ -34,7 +36,7 @@ import {
 import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
-// import TourView from "./client/js/components/tours-view";
+import TourView from "./client/js/components/tours-view";
 
 /*
  TODO: Insert your API key below
@@ -87,6 +89,7 @@ export default class App extends Component {
   // Presents the user with a choice of an AR or VR experience
   _getExperienceSelector() {
     return (
+      <Provider store={store}>
       <Container>
         <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
         <Header style={styles.header} hasTabs />
@@ -119,10 +122,11 @@ export default class App extends Component {
               </TabHeading>
             }
           >
-            {/* <TourView /> */}
+            <TourView />
           </Tab>
         </Tabs>
       </Container>
+      </Provider>
     );
   }
 
