@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../db');
+const { User } = require('../db');
 
 // This marries the original auth code we wrote to Passport.
 // An alternative would be to use the "local strategy" option with Passport.
@@ -33,9 +33,6 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-    // console.log('Did I get here?');
-    // console.log('The request is ......', req.body);
-    // res.send('Hello World!')
     try {
       const user = await User.findOne({where: {email: req.body.email}})
       if (!user) {
