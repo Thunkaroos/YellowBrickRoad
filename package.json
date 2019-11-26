@@ -6,7 +6,8 @@
     "prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
     "start": "node node_modules/react-native/local-cli/cli.js start & node server/index.js",
     "test": "jest",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "start-server": "node server/index"
   },
   "dependencies": {
     "axios": "^0.19.0",
