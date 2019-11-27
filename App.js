@@ -8,8 +8,8 @@
  */
 
 import React, { Component } from "react";
-import {Provider} from 'react-redux'
-import store from './client/js/store/index.js'
+import { Provider } from "react-redux";
+import store from "./client/js/store/index.js";
 import {
   AppRegistry,
   Text,
@@ -17,7 +17,8 @@ import {
   StyleSheet,
   PixelRatio,
   TouchableHighlight,
-  StatusBar
+  StatusBar,
+  Image
 } from "react-native";
 import {
   Container,
@@ -47,11 +48,13 @@ var sharedProps = {
 
 // Sets the default scene you want for AR and VR
 var InitialARScene = require("./client/js/HelloWorldSceneAR");
+var InitialARSceneEditor = require("./client/js/AR-Editor");
 var InitialVRScene = require("./client/js/HelloWorldScene");
 
 var UNSET = "UNSET";
 var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
+var AR_EDITOR_TYPE = "AREditor";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
@@ -67,6 +70,7 @@ export default class App extends Component {
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
+    this._getAREditor = this._getAREditor.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
       this
@@ -83,6 +87,8 @@ export default class App extends Component {
       return this._getVRNavigator();
     } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
       return this._getARNavigator();
+    } else if (this.state.navigatorType == AR_EDITOR_TYPE) {
+      return this._getAREditor();
     }
   }
 
@@ -90,42 +96,43 @@ export default class App extends Component {
   _getExperienceSelector() {
     return (
       <Provider store={store}>
-      <Container>
-        <StatusBar barStyle="dark-content" backgroundColor="#6a51ae" />
-        <Header style={styles.header} hasTabs />
-        <Tabs>
-          <Tab
-            heading={
-              <TabHeading style={styles.header}>
-                <Text>Main Menu</Text>
-              </TabHeading>
-            }
-          >
-            <AuthForm />
-          </Tab>
-          <Tab
-            heading={
-              <TabHeading style={styles.header}>
-                <Text>AR</Text>
-              </TabHeading>
-            }
-          >
-            <ARView
-              _getExperienceButtonOnPress={this._getExperienceButtonOnPress}
-              AR_NAVIGATOR_TYPE={AR_NAVIGATOR_TYPE}
-            />
-          </Tab>
-          <Tab
-            heading={
-              <TabHeading style={styles.header}>
-                <Text>Tours</Text>
-              </TabHeading>
-            }
-          >
-            <TourView />
-          </Tab>
-        </Tabs>
-      </Container>
+        <Container>
+          <StatusBar />
+          <Header style={styles.header} hasTabs />
+          <Tabs>
+            <Tab
+              heading={
+                <TabHeading style={styles.header}>
+                  <Text>Main Menu</Text>
+                </TabHeading>
+              }
+            >
+              <AuthForm />
+            </Tab>
+            <Tab
+              heading={
+                <TabHeading style={styles.header}>
+                  <Text>AR</Text>
+                </TabHeading>
+              }
+            >
+              <ARView
+                _getExperienceButtonOnPress={this._getExperienceButtonOnPress}
+                AR_NAVIGATOR_TYPE={AR_NAVIGATOR_TYPE}
+                AR_EDITOR_TYPE={AR_EDITOR_TYPE}
+              />
+            </Tab>
+            <Tab
+              heading={
+                <TabHeading style={styles.header}>
+                  <Text>Tours</Text>
+                </TabHeading>
+              }
+            >
+              <TourView />
+            </Tab>
+          </Tabs>
+        </Container>
       </Provider>
     );
   }
@@ -138,6 +145,102 @@ export default class App extends Component {
         initialScene={{ scene: InitialARScene }}
         onExitViro={this._exitViro}
       />
+    );
+  }
+
+  _getAREditor() {
+    return (
+      <View style={styles.outer}>
+        <ViroARSceneNavigator
+          {...this.state.sharedProps}
+          initialScene={{ scene: InitialARSceneEditor }}
+          onExitViro={this._exitViro}
+        />
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 10,
+            alignItems: "flex-start"
+          }}
+        >
+          <TouchableHighlight
+            onPress={() => this._exitViro()}
+            style={styles.buttons}
+            underlayColor={"#00000000"}
+          >
+            <Image source={require("./client/js/res/icon_left_w.png")} />
+          </TouchableHighlight>
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 25,
+            alignItems: "flex-end"
+          }}
+        >
+          <TouchableHighlight
+            style={styles.buttons}
+            underlayColor={"#00000000"}
+          >
+            <Image source={require("./client/js/res/icon_repeat.png")} />
+          </TouchableHighlight>
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            left: 10,
+            right: 0,
+            bottom: 20,
+            alignItems: "flex-start"
+          }}
+        >
+          <TouchableHighlight
+            style={styles.UIButton}
+            underlayColor={"#00000000"}
+          >
+            <Text style={styles.buttonText}>Start</Text>
+            {/* <Image source={require("./client/js/res/button_start.png")} /> */}
+          </TouchableHighlight>
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 15,
+            bottom: 20,
+            alignItems: "flex-end"
+          }}
+        >
+          <TouchableHighlight
+            style={styles.UIButton}
+            underlayColor={"#00000000"}
+          >
+            <Text style={styles.buttonText}>Stop</Text>
+            {/* <Image source={require("./client/js/res/button_stop.png")} /> */}
+          </TouchableHighlight>
+        </View>
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 20,
+            alignItems: "center"
+          }}
+        >
+          <TouchableHighlight
+            style={styles.MainButton}
+            underlayColor={"#00000000"}
+          >
+            <Text style={styles.mainButtonText}>Drop</Text>
+            {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
+          </TouchableHighlight>
+        </View>
+      </View>
     );
   }
 
@@ -178,8 +281,7 @@ var styles = StyleSheet.create({
   outer: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "black"
+    alignItems: "flex-end"
   },
   inner: {
     flex: 1,
@@ -194,10 +296,58 @@ var styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 25
   },
+  buttons: {
+    height: 80,
+    width: 80,
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: "#00000000",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ffffff00"
+  },
   exitButton: {
     marginTop: 10,
     alignSelf: "center",
     width: 100
+  },
+  UIButton: {
+    width: 80,
+    height: 40,
+    paddingTop: 5,
+    // paddingBottom: 20,
+    // marginTop: 10,
+    // marginBottom: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black"
+  },
+  buttonText: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 25
+    // marginLeft: 33
+  },
+  mainButtonText: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 25,
+    marginTop: 18
+  },
+  MainButton: {
+    width: 80,
+    height: 80,
+    paddingTop: 5,
+    // paddingBottom: 20,
+    // marginTop: 10,
+    // marginBottom: 10,
+    backgroundColor: "white",
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "black"
   }
 });
 
