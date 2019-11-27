@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { Container, Header, Content, List, Text } from "native-base";
-import SmallTour from "./small-tour-view";
+import TourTabItem from "./tour-tab-item";
+import IndividualTourView from './individual-tour-view';
 import { connect } from "react-redux";
-import { getAllTours } from "../store/tour";
+import { getAllTours, getTour, deselectTour } from "../store/tour";
 
 export default connect(
-  state => ({ tours: state.tours.tours}),
-  dispatch => ({ getAllTours: () => dispatch(getAllTours()) })
+  state => ({ 
+    tours: state.tours.tours,
+    selectedTour: state.tours.selectedTour
+  }),
+  dispatch => ({ 
+    getAllTours: () => dispatch(getAllTours()),
+    getTour: (id) => dispatch(getTour(id)),
+    deselectTour: () => dispatch(deselectTour())
+  })
 )(
   class TourView extends Component {
     constructor(props){
@@ -17,15 +25,21 @@ export default connect(
     }
 
     render() {
+      console.log('The selectedTour is ......', this.props.selectedTour)
       return (
         <Container>
+          {(this.props.selectedTour && this.props.selectedTour.id) ? 
+          <IndividualTourView tour = {this.props.selectedTour} deselectTour = {this.props.deselectTour} />
+          :
           <Content>
             <List>
               {this.props.tours.map(tour => (
-                <SmallTour key={tour.id} {...tour} />
+                <TourTabItem key={tour.id} tour = {tour} getTour = {this.props.getTour} />
               ))}
             </List>
           </Content>
+          }
+          
         </Container>
       );
     }
