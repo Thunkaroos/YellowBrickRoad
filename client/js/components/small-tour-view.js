@@ -5,20 +5,21 @@ import BigTour from "./big-tour-view";
 
 //bring in Tour DB Data
 
-export default class SmallTour extends Component {
-  constructor(props){
-    super(props)
-  }
-  render() {
+const SmallTour = (props) => {
+  console.log('The props are ....', props);
+  const tour = props.tour;
+  const getTour = props.getTour;
+
     return (
-      <ListItem onPress={() => console.log("hello")}>
+      <ListItem onPress={() => props.getTour(props.tour.id)}>
         <Left>
-          <Text>{this.props.name}</Text>
+          <Text>{props.tour.name}</Text>
         </Left>
         <Right>
           <Text>></Text>
         </Right>
       </ListItem>
-    );
-  }
+    )
 }
+
+export default SmallTour

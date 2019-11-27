@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import { Container, Header, Content, List, Text } from "native-base";
 import SmallTour from "./small-tour-view";
 import { connect } from "react-redux";
-import { getAllTours } from "../store/tour";
+import { getAllTours, getTour } from "../store/tour";
 
 export default connect(
-  state => ({ tours: state.tours.tours}),
-  dispatch => ({ getAllTours: () => dispatch(getAllTours()) })
+  state => ({ 
+    tours: state.tours.tours,
+    selectedTour: state.tours.selectedTour
+  }),
+  dispatch => ({ 
+    getAllTours: () => dispatch(getAllTours()),
+    getTour: (id) => dispatch(getTour(id))
+  })
 )(
   class TourView extends Component {
     constructor(props){
@@ -22,7 +28,7 @@ export default connect(
           <Content>
             <List>
               {this.props.tours.map(tour => (
-                <SmallTour key={tour.id} {...tour} />
+                <SmallTour key={tour.id} tour = {tour} getTour = {this.props.getTour} />
               ))}
             </List>
           </Content>
