@@ -27,14 +27,24 @@ import {
 export default class ARView extends Component {
   render() {
     return (
-      <Button
-        style={styles.buttons}
-        onPress={this.props._getExperienceButtonOnPress(
-          this.props.AR_NAVIGATOR_TYPE
-        )}
-      >
-        <Text style={styles.buttonText}>AR View</Text>
-      </Button>
+      <View>
+        <Button
+          style={styles.buttons}
+          onPress={this.props._getExperienceButtonOnPress(
+            this.props.AR_NAVIGATOR_TYPE
+          )}
+        >
+          <Text style={styles.buttonText}>AR Viewer</Text>
+        </Button>
+        <Button
+          style={styles.button}
+          onPress={this.props._getExperienceButtonOnPress(
+            this.props.AR_EDITOR_TYPE
+          )}
+        >
+          <Text style={styles.buttonText}>AR Editor</Text>
+        </Button>
+      </View>
     );
   }
 }
@@ -44,9 +54,14 @@ var styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     fontSize: 20,
-    marginLeft: 40
+    marginLeft: 33
   },
   buttons: {
+    marginTop: 200,
+    alignSelf: "center",
+    width: 150
+  },
+  button: {
     marginTop: 10,
     alignSelf: "center",
     width: 150
