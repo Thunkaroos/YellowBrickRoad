@@ -21,6 +21,12 @@ const tours = [
     description: "TEST OF TOUR 1",
     startImg:
       "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+  },
+  {
+    name: "Tour 2",
+    description: "TEST OF TOUR 2i",
+    startImg:
+      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
   }
 ];
 
