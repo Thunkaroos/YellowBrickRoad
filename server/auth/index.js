@@ -28,7 +28,7 @@ router.post('/signup', async (req, res, next) => {
       res.json(user);
     });
   } else {
-    res.sendStatus(401); // this user already exists, you cannot sign up
+    res.status(401).send('An account already exist with this email'); // this user already exists, you cannot sign up
   }
 });
 
