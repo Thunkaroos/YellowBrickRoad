@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Container, Header, Content, List, Text } from "native-base";
-import SmallTour from "./small-tour-view";
+import TourTabItem from "./tour-tab-item";
+import IndividualTourView from './individual-tour-view';
 import { connect } from "react-redux";
-import { getAllTours, getTour } from "../store/tour";
+import { getAllTours, getTour, deselectTour } from "../store/tour";
 
 export default connect(
   state => ({ 
@@ -11,7 +12,8 @@ export default connect(
   }),
   dispatch => ({ 
     getAllTours: () => dispatch(getAllTours()),
-    getTour: (id) => dispatch(getTour(id))
+    getTour: (id) => dispatch(getTour(id)),
+    deselectTour: () => dispatch(deselectTour())
   })
 )(
   class TourView extends Component {
@@ -23,15 +25,21 @@ export default connect(
     }
 
     render() {
+      console.log('The selectedTour is ......', this.props.selectedTour)
       return (
         <Container>
+          {(this.props.selectedTour && this.props.selectedTour.id) ? 
+          <IndividualTourView tour = {this.props.selectedTour} deselectTour = {this.props.deselectTour} />
+          :
           <Content>
             <List>
               {this.props.tours.map(tour => (
-                <SmallTour key={tour.id} tour = {tour} getTour = {this.props.getTour} />
+                <TourTabItem key={tour.id} tour = {tour} getTour = {this.props.getTour} />
               ))}
             </List>
           </Content>
+          }
+          
         </Container>
       );
     }

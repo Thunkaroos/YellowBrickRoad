@@ -3,9 +3,11 @@ import thunkMiddleWare from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import toursReducer from './tour'
+import userReducer from './user'
 
 const rootReducer = combineReducers({
-  tours: toursReducer
+  tours: toursReducer,
+  user: userReducer,
 })
 
 const middleware = composeWithDevTools(

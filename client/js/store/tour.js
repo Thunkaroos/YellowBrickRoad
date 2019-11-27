@@ -1,17 +1,21 @@
-import axios from 'axios'
+import axios from "axios";
 
-
-const GET_ALL_TOURS = "GET_ALL_TOURS"
-const GET_TOUR = "GET_TOUR"
+const GET_ALL_TOURS = "GET_ALL_TOURS";
+const GET_TOUR = "GET_TOUR";
+const DESELECT_TOUR = "DESELECT_TOUR";
 
 const gotAllTours = tours => ({
   type: GET_ALL_TOURS,
   tours
-})
+});
 
 const gotTour = tour => ({
   type: GET_TOUR,
   tour
+})
+
+export const deselectTour = () => ({
+  type: DESELECT_TOUR
 })
 
 export const getAllTours = () => {
@@ -20,10 +24,10 @@ export const getAllTours = () => {
       const {data} = await axios.get(`http://10.0.0.163:3000/api/tours`)
       dispatch(gotAllTours(data)) 
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const getTour = (id) => {
   return async dispatch => {
@@ -47,9 +51,11 @@ const toursReducer = (state = initialState, action) => {
       return {...state, tours: [...action.tours]}
     case GET_TOUR:
       return {...state, selectedTour: action.tour}
+    case DESELECT_TOUR:
+      return {...state, selectedTour: {}}
     default:
-      return state  
+      return state;
   }
-}
+};
 
-export default toursReducer
+export default toursReducer;
