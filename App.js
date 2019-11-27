@@ -173,6 +173,14 @@ export default class App extends Component {
           </TouchableHighlight>
         </View>
 
+        <View style={{position: 'absolute',  left: 0, right: 0, bottom: 20, alignItems: 'center'}}>
+          <TouchableHighlight style={styles.buttons}
+          
+            underlayColor={'#00000000'} >
+            <Image source={require("./client/js/res/button_marker.png")} />
+          </TouchableHighlight>
+        </View>
+
 
       </View>
     );
