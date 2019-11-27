@@ -36,7 +36,7 @@ export default class HelloWorldSceneAR extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(1); //<---- Hardcoded!! change this!
+    this.getTourData(2); //<---- Hardcoded!! change this!
   }
 
   async getTourData(id) {

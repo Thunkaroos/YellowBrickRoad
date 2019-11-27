@@ -24,7 +24,7 @@ const tours = [
   },
   {
     name: "Tour 2",
-    description: "TEST OF TOUR 2i",
+    description: "TEST OF TOUR 2",
     startImg:
       "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
   }
@@ -51,6 +51,34 @@ const points = [
     y: 0,
     z: -9,
     tourId: 1
+  },
+  {
+    stepNum: 1,
+    x: 0,
+    y: 0,
+    z: 0,
+    tourId: 2
+  },
+  {
+    stepNum: 2,
+    x: 0,
+    y: 0,
+    z: -9,
+    tourId: 2
+  },
+  {
+    stepNum: 3,
+    x: 10,
+    y: 0,
+    z: -9,
+    tourId: 2
+  },
+  {
+    stepNum: 4,
+    x: 10,
+    y: 0,
+    z: -15,
+    tourId: 2
   }
 ];
 

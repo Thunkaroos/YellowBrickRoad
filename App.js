@@ -140,11 +140,30 @@ export default class App extends Component {
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: InitialARScene }}
-        onExitViro={this._exitViro}
-      />
+      <View style={styles.outer}>
+        <ViroARSceneNavigator
+          {...this.state.sharedProps}
+          initialScene={{ scene: InitialARScene }}
+          onExitViro={this._exitViro}
+        />
+        <View
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 10,
+            alignItems: "flex-start"
+          }}
+        >
+          <TouchableHighlight
+            onPress={() => this._exitViro()}
+            style={styles.buttons}
+            underlayColor={"#00000000"}
+          >
+            <Image source={require("./client/js/res/icon_left_w.png")} />
+          </TouchableHighlight>
+        </View>
+      </View>
     );
   }
 
