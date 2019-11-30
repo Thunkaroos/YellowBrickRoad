@@ -18,6 +18,7 @@ router.get('/:id', async (req,res,next) => {
   try {
     const tour = await Tour.findByPk(req.params.id)
     if (tour) {
+      console.log("test")
       res.status(200).send(tour)
     } else {
       res.sendStatus(404)

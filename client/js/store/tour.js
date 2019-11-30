@@ -33,7 +33,7 @@ export const getTour = id => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        `https://ar-guides.herokuapp.com/api/tours${id}`
+        `https://ar-guides.herokuapp.com/api/tours/${id}`
       );
       dispatch(gotTour(data));
     } catch (error) {
