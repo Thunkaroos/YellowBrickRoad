@@ -1,0 +1,2 @@
+t=2019-11-29T12:21:51-0500 lvl=info msg="no configuration paths supplied"
+t=2019-11-29T12:21:51-0500 lvl=info msg="ignoring default config path, could not stat it" path=/Users/Alex/.ngrok2/ngrok.yml err="stat /Users/Alex/.ngrok2/ngrok.yml: no such file or directory"

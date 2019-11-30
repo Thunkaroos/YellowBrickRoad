@@ -44,7 +44,7 @@ const IndividualTourView = props => {
       <Footer>
         <FooterTab>
           <Button onPress={() => props.deselectTour()}>
-            <Text>Back to All Tours</Text>
+            <Text>Back to Tours</Text>
           </Button>
           <Button onPress={() => props._getARNavigator()}>
             <Text>Start Tour</Text>
