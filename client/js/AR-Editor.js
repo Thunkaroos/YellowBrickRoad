@@ -1,10 +1,10 @@
 "use strict";
 
 import React, { Component } from "react";
-
 import { StyleSheet } from "react-native";
-
 import { Button } from "native-base";
+import { connect } from "react-redux";
+
 
 import {
   ViroNode,
@@ -19,7 +19,7 @@ import {
 import axios from "axios";
 //import console from "console";
 
-export default class AREditor extends Component {
+class AREditor extends Component {
   constructor() {
     super();
 
@@ -36,21 +36,21 @@ export default class AREditor extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(1); //<---- Hardcoded!! change this!
+    //this.getTourData(1); //<---- Hardcoded!! change this!
   }
 
-  async getTourData(id) {
-    try {
-      const { data } = await axios.get(
-        `http://172.16.23.25:3000/api/points/${id}`
-      ); //<--- change for deployment
-      this.setState({
-        dataPoints: data
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async getTourData(id) {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `http://172.16.23.25:3000/api/points/${id}`
+  //     ); //<--- change for deployment
+  //     this.setState({
+  //       dataPoints: data
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   render() {
     return (
@@ -97,7 +97,14 @@ export default class AREditor extends Component {
       // Handle loss of tracking
     }
   }
+
+  // async dropDataPoint() {
+  //   console.log("dropDataPoint")
+  // }
+
 }
+
+
 
 ViroMaterials.createMaterials({
   brick: {
@@ -120,5 +127,11 @@ var styles = StyleSheet.create({
     flex: 1
   }
 });
+
+const mapDispatchtoProps = dispatch => {
+  dropPoint: () => dispatch(dropButtonHandler())
+}
+
+export default connect(mapDispatchtoProps)(AREditor)
 
 module.exports = AREditor;

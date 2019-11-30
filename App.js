@@ -10,6 +10,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./client/js/store/index.js";
+import { connect } from 'react-redux'
 import {
   AppRegistry,
   Text,
@@ -72,10 +73,9 @@ export default class App extends Component {
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    );
+    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
+    this.dropButtonHandler = this.dropButtonHandler.bind(this)
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -257,6 +257,7 @@ export default class App extends Component {
           <TouchableHighlight
             style={styles.MainButton}
             underlayColor={"#00000000"}
+            onPress={() => this.dropButtonHandler()}
           >
             <Text style={styles.mainButtonText}>Drop</Text>
             {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
@@ -292,6 +293,11 @@ export default class App extends Component {
     this.setState({
       navigatorType: UNSET
     });
+  }
+
+  dropButtonHandler(){
+    console.log("drop button || props -->", this.props.sceneNavigator.viroAppProps) 
+    //this.props.dropPoint()  
   }
 }
 
@@ -372,5 +378,10 @@ var styles = StyleSheet.create({
     borderColor: "black"
   }
 });
+
+
+// const mapDispatchtoProps = dispatch => {
+//   dropButtonHandler : () => dispatch()
+// }
 
 module.exports = App;
