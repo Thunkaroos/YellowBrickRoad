@@ -6,13 +6,13 @@ const TourTabItem = (props) => {
   const tour = props.tour;
   const getTour = props.getTour;
 
-    return (
+    return (  
       <ListItem onPress={() => props.getTour(props.tour.id)}>
         <Left>
           <Text>{props.tour.name}</Text>
         </Left>
         <Right>
-          <Text>></Text>
+          <Text>>></Text>
         </Right>
       </ListItem>
     )

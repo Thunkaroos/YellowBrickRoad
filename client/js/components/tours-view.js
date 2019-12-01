@@ -5,10 +5,11 @@ import IndividualTourView from './individual-tour-view';
 import { connect } from "react-redux";
 import { getAllTours, getTour, deselectTour } from "../store/tour";
 
+
 export default connect(
   state => ({ 
     tours: state.tours.tours,
-    selectedTour: state.tours.selectedTour
+    selectedTour: state.tours.selectedTour,
   }),
   dispatch => ({ 
     getAllTours: () => dispatch(getAllTours()),
@@ -25,7 +26,6 @@ export default connect(
     }
 
     render() {
-      console.log('The selectedTour is ......', this.props.selectedTour)
       return (
         <Container>
           {(this.props.selectedTour && this.props.selectedTour.id) ? 
@@ -39,7 +39,6 @@ export default connect(
             </List>
           </Content>
           }
-          
         </Container>
       );
     }

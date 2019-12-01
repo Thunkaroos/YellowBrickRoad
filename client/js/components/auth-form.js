@@ -30,14 +30,21 @@ import {
 import { connect } from "react-redux";
 import { auth, logoutUser } from "../store/user";
 import { Profile } from "./profile";
+import {getTour, getAllTours} from "../store/tour";
 
 import axios from 'axios';
 
+
 export default connect(
-  state => ({ user: state.user.user }),
+  state => ({ user: state.user.user,
+              tours: state.tours.tours,
+  }),
   dispatch => ({ 
     getUser: (email, password, method) => dispatch(auth(email, password, method)),
-    logoutUser: () => dispatch(logoutUser())            
+    logoutUser: () => dispatch(logoutUser()),
+    getAllTours: () => dispatch(getAllTours()),
+    getTour: (id) => dispatch(getTour(id))
+
   })
 )(
   class AuthForm extends Component {
@@ -68,6 +75,7 @@ export default connect(
         const password = this.state.password;
 
         this.props.getUser(email, password, method) 
+        
     }
 
     changeForm() {
@@ -83,6 +91,10 @@ export default connect(
           secondaryForm: 'Sign Up',
         })
       }
+    }
+    componentDidMount() {
+      this.props.getAllTours();
+      
     }
 
     render() {
@@ -100,7 +112,9 @@ export default connect(
           
       return (
         (this.props.user && this.props.user.email) ? 
-          <Profile user = {this.props.user} logout = {this.props.logoutUser} />
+        <View>
+          <Profile user = {this.props.user} logout = {this.props.logoutUser} tours={this.props.tours} getTour = {this.props.getTour} /> 
+          </View> 
           :
           <View style={styles.menu}>
             {errorMessage}
