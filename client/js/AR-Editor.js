@@ -20,8 +20,8 @@ import axios from "axios";
 //import console from "console";
 
 class AREditor extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // Set initial state here
     this.state = {
@@ -37,6 +37,7 @@ class AREditor extends Component {
 
   componentDidMount() {
     //this.getTourData(1); //<---- Hardcoded!! change this!
+    console.log('props -->', this.props)
   }
 
   // async getTourData(id) {
@@ -98,9 +99,13 @@ class AREditor extends Component {
     }
   }
 
-  // async dropDataPoint() {
-  //   console.log("dropDataPoint")
-  // }
+  dropDataPoint() {
+    console.log("dropDataPoint")
+    // return async function dropDataPoint() {
+    //     let orientation = await getCameraOrientationAsync()
+    //     console.log(orientation) 
+    // } 
+  }
 
 }
 
@@ -129,7 +134,7 @@ var styles = StyleSheet.create({
 });
 
 const mapDispatchtoProps = dispatch => {
-  dropPoint: () => dispatch(dropButtonHandler())
+  dropPoint: () => dispatch(dropDataPoint())
 }
 
 export default connect(mapDispatchtoProps)(AREditor)

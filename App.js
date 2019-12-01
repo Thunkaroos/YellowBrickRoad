@@ -146,7 +146,7 @@ export default class App extends Component {
       <View style={styles.outer}>
         <ViroARSceneNavigator
           {...this.state.sharedProps}
-          initialScene={{ scene: InitialARScene }}
+          initialScene={{ scene: InitialARScene}}
           onExitViro={this._exitViro}
         />
         <View
@@ -175,7 +175,8 @@ export default class App extends Component {
       <View style={styles.outer}>
         <ViroARSceneNavigator
           {...this.state.sharedProps}
-          initialScene={{ scene: InitialARSceneEditor }}
+          initialScene={{ scene: InitialARSceneEditor,
+          passProps:{dropbuttonHandler: this.dropButtonHandler} }}
           onExitViro={this._exitViro}
         />
         <View
@@ -257,7 +258,7 @@ export default class App extends Component {
           <TouchableHighlight
             style={styles.MainButton}
             underlayColor={"#00000000"}
-            onPress={() => this.dropButtonHandler()}
+            onPress={(e) => this.dropButtonHandler(e)}
           >
             <Text style={styles.mainButtonText}>Drop</Text>
             {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
@@ -295,9 +296,10 @@ export default class App extends Component {
     });
   }
 
-  dropButtonHandler(){
-    console.log("drop button || props -->", this.props.sceneNavigator.viroAppProps) 
-    //this.props.dropPoint()  
+  dropButtonHandler(e){
+    const reduxState = store.getState()
+    console.log('reduxState --->', reduxState)
+    dispatch(dropDataPoint())
   }
 }
 
