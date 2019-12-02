@@ -7,7 +7,10 @@ import TourTabItem from "./tour-tab-item";
 
 export const Profile = (props) => {
     const user = props.user;
+
+    console.log('------------%%%%%%%%%', props)
     return (
+      
         <View>
             <Header>
             <Text>Your Tours</Text>
@@ -18,7 +21,7 @@ export const Profile = (props) => {
                 <Right />   
             </Header>    
             <List > 
-              {props.tours.filter(tour => tour.userId === user.id).map(tour => <TourTabItem key={tour.id} tour = {tour} getTour = {props.getTour} />)}
+              {props.tours.filter(tour => tour.userId === user.id).map(tour => <TourTabItem key={tour.id} tour = {tour} getTour = {props.getTour} tabHandler = {props.tabHandler}/>)}
             </List>
             <Button transparent style={styles.loginButton} onPress = {props.logout}>
                 <Text>Logout</Text>

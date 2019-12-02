@@ -76,6 +76,7 @@ export default class App extends Component {
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
+    this.tabHandler = this.tabHandler.bind(this)
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -107,7 +108,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm />
+              <AuthForm tabHandler = {this.tabHandler}/>
             </Tab>
             <Tab
               heading={
@@ -262,6 +263,11 @@ export default class App extends Component {
       </View>
     );
   }
+
+ tabHandler() {
+   this.setState({
+  activeTab: 0
+})}
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {

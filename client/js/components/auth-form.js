@@ -98,7 +98,6 @@ export default connect(
     }
 
     render() {
-
       let errorMessage;
 
       if (this.props.user && this.props.user.error) {
@@ -111,9 +110,10 @@ export default connect(
       }
           
       return (
+        
         (this.props.user && this.props.user.email) ? 
         <View>
-          <Profile user = {this.props.user} logout = {this.props.logoutUser} tours={this.props.tours} getTour = {this.props.getTour} /> 
+          <Profile user = {this.props.user} logout = {this.props.logoutUser} tours={this.props.tours} getTour = {this.props.getTour} tabHandler = {this.props.tabHandler}/> 
           </View> 
           :
           <View style={styles.menu}>
