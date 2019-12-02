@@ -42,7 +42,7 @@ export default class HelloWorldSceneAR extends Component {
     try {
       const { data } = await axios.get(
         `https://ar-guides.herokuapp.com/api/points/${id}` //<--- change for deployment
-      ); 
+      );
       this.setState({
         dataPoints: data
       });
@@ -53,7 +53,8 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized}>
+      //onTrackingUpdated={this._onInitialized}
+      <ViroARScene>
         <ViroText
           text={this.state.text}
           scale={[0.5, 0.5, 0.5]}
