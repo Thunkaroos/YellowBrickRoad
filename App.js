@@ -69,6 +69,7 @@ export default class App extends Component {
       sharedProps: sharedProps,
       tourId: ""
     };
+    this._onInitialized = this._onInitialized.bind(this);
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
@@ -110,10 +111,11 @@ export default class App extends Component {
             >
               <AuthForm />
             </Tab>
+
             <Tab
               heading={
                 <TabHeading style={styles.header}>
-                  <Text>AR</Text>
+                  <Text>Editor</Text>
                 </TabHeading>
               }
             >
@@ -225,6 +227,7 @@ export default class App extends Component {
           <TouchableHighlight
             style={styles.UIButton}
             underlayColor={"#00000000"}
+            onTrackingUpdated={this._onInitialized}
           >
             <Text style={styles.buttonText}>Start</Text>
             {/* <Image source={require("./client/js/res/button_start.png")} /> */}
@@ -295,6 +298,16 @@ export default class App extends Component {
     this.setState({
       navigatorType: UNSET
     });
+  }
+
+  _onInitialized(state, reason) {
+    if (state == ViroConstants.TRACKING_NORMAL) {
+      this.setState({
+        text: "Start Here!"
+      });
+    } else if (state == ViroConstants.TRACKING_NONE) {
+      // Handle loss of tracking
+    }
   }
 }
 
