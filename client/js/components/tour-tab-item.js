@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 const TourTabItem = (props) => {
   const tour = props.tour;
   const getTour = props.getTour;
-
+console.log('----------------------------------', props)
     return (  
+      
       <ListItem onPress={() => props.getTour(props.tour.id)}>
         <Left>
           <Text>{props.tour.name}</Text>
