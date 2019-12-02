@@ -5,9 +5,15 @@ import { connect } from "react-redux";
 const TourTabItem = (props) => {
   const tour = props.tour;
   const getTour = props.getTour;
-console.log('---------------------------------->>>>>>>>>>>***', props.tabHandler, '666666', props)
+console.log('---------------------------------->>>>>>>>>>>***')
     return (    
-      <ListItem onPress={() => props.getTour(props.tour.id)}>
+      <ListItem onPress={() => {
+        props.getTour(props.tour.id)
+        if (props.tabHandler){
+          props.tabHandler()
+        }
+      }}>
+
         <Left>
           <Text>{props.tour.name}</Text>
         </Left>
@@ -19,6 +25,11 @@ console.log('---------------------------------->>>>>>>>>>>***', props.tabHandler
 }
 
 export default TourTabItem
+
+
+// const onPressHandler = (props) => {
+// return (props.getTour(props.tour.id), props.tabHandler())
+// }
 
 
 // props.getTour(props.tour.id)
