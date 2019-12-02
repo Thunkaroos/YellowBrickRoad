@@ -67,7 +67,7 @@ export default class App extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      tourId: '',
+      tourId: ""
     };
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
@@ -104,7 +104,7 @@ export default class App extends Component {
             <Tab
               heading={
                 <TabHeading style={styles.header}>
-                  <Text>Main Menu</Text>
+                  <Text>Profile</Text>
                 </TabHeading>
               }
             >
@@ -148,7 +148,7 @@ export default class App extends Component {
         <ViroARSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }}
-          viroAppProps = {{ tourId: this.state.tourId }}
+          viroAppProps={{ tourId: this.state.tourId }}
           onExitViro={this._exitViro}
         />
         <View
@@ -281,7 +281,7 @@ export default class App extends Component {
 
   // This function returns an anonymous/lambda function to be used
   // by the experience selector buttons
-  _getExperienceButtonOnPress(navigatorType, tourId = '') {
+  _getExperienceButtonOnPress(navigatorType, tourId = "") {
     return () => {
       this.setState({
         navigatorType: navigatorType,
