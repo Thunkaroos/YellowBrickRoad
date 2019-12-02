@@ -17,7 +17,6 @@ import {
   ViroMaterials
 } from "react-viro";
 import axios from "axios";
-//import console from "console";
 
 export default class HelloWorldSceneAR extends Component {
   constructor() {
@@ -36,7 +35,7 @@ export default class HelloWorldSceneAR extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(1); //<---- Hardcoded!! change this!
+    this.getTourData(this.props.sceneNavigator.viroAppProps.tourId); //<---- Hardcoded!! change this!
   }
 
   async getTourData(id) {

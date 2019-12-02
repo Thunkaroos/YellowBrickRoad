@@ -31,7 +31,7 @@ export default connect(
             <IndividualTourView
               tour={this.props.selectedTour}
               deselectTour={this.props.deselectTour}
-              _getARNavigator={this.props._getARNavigator}
+              _getExperienceButtonOnPress={this.props._getExperienceButtonOnPress}
               AR_NAVIGATOR_TYPE={this.props.AR_NAVIGATOR_TYPE}
             />
           ) : (
