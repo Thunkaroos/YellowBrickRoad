@@ -16,6 +16,7 @@ import {
   FooterTab
 } from "native-base";
 
+
 const IndividualTourView = props => {
   return (
     <Container>

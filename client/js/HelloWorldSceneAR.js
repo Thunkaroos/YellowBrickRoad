@@ -43,6 +43,7 @@ export default class HelloWorldSceneAR extends Component {
       const { data } = await axios.get(
         `https://ar-guides.herokuapp.com/api/points/${id}` //<--- change for deployment
       );
+
       this.setState({
         dataPoints: data
       });

@@ -67,6 +67,8 @@ export default class App extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
+      initialPage: 0,
+      page: 1,
       tourId: ""
     };
     this._onInitialized = this._onInitialized.bind(this);
@@ -74,10 +76,9 @@ export default class App extends Component {
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    );
+    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
+    this.tabHandler = this.tabHandler.bind(this)
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -101,7 +102,7 @@ export default class App extends Component {
         <Container>
           <StatusBar />
           <Header style={styles.header} hasTabs />
-          <Tabs>
+          <Tabs  page = {this.state.page} initialPage = {this.state.initialPage}>
             <Tab
               heading={
                 <TabHeading style={styles.header}>
@@ -109,7 +110,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm />
+              <AuthForm tabHandler = {this.tabHandler}/>
             </Tab>
 
             <Tab
@@ -270,6 +271,12 @@ export default class App extends Component {
       </View>
     );
   }
+
+ tabHandler() {
+   this.setState({
+  page: 2,
+  initialPage: 2
+})}
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
