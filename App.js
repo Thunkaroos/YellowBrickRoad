@@ -68,8 +68,10 @@ export default class App extends Component {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
       initialPage: 0,
-      page: 1
+      page: 1,
+      tourId: ""
     };
+    this._onInitialized = this._onInitialized.bind(this);
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
@@ -104,16 +106,17 @@ export default class App extends Component {
             <Tab
               heading={
                 <TabHeading style={styles.header}>
-                  <Text>Main Menu</Text>
+                  <Text>Profile</Text>
                 </TabHeading>
               }
             >
               <AuthForm tabHandler = {this.tabHandler}/>
             </Tab>
+
             <Tab
               heading={
                 <TabHeading style={styles.header}>
-                  <Text>AR</Text>
+                  <Text>Editor</Text>
                 </TabHeading>
               }
             >
@@ -130,7 +133,10 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <TourView />
+              <TourView
+                _getExperienceButtonOnPress={this._getExperienceButtonOnPress}
+                AR_NAVIGATOR_TYPE={AR_NAVIGATOR_TYPE}
+              />
             </Tab>
           </Tabs>
         </Container>
@@ -145,6 +151,7 @@ export default class App extends Component {
         <ViroARSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }}
+          viroAppProps={{ tourId: this.state.tourId }}
           onExitViro={this._exitViro}
         />
         <View
@@ -221,6 +228,7 @@ export default class App extends Component {
           <TouchableHighlight
             style={styles.UIButton}
             underlayColor={"#00000000"}
+            onTrackingUpdated={this._onInitialized}
           >
             <Text style={styles.buttonText}>Start</Text>
             {/* <Image source={require("./client/js/res/button_start.png")} /> */}
@@ -283,10 +291,11 @@ export default class App extends Component {
 
   // This function returns an anonymous/lambda function to be used
   // by the experience selector buttons
-  _getExperienceButtonOnPress(navigatorType) {
+  _getExperienceButtonOnPress(navigatorType, tourId = "") {
     return () => {
       this.setState({
-        navigatorType: navigatorType
+        navigatorType: navigatorType,
+        tourId: tourId
       });
     };
   }
@@ -296,6 +305,16 @@ export default class App extends Component {
     this.setState({
       navigatorType: UNSET
     });
+  }
+
+  _onInitialized(state, reason) {
+    if (state == ViroConstants.TRACKING_NORMAL) {
+      this.setState({
+        text: "Start Here!"
+      });
+    } else if (state == ViroConstants.TRACKING_NONE) {
+      // Handle loss of tracking
+    }
   }
 }
 

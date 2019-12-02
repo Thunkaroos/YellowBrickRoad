@@ -13,56 +13,49 @@ import {
   Left,
   Body,
   Footer,
-  FooterTab,
+  FooterTab
 } from "native-base";
 
-const IndividualTourView = (props) => {
-  console.log('The props are .....          Individual-tour-view   +++++++++++++++++ ', props);
+
+const IndividualTourView = props => {
   return (
     <Container>
-      <Header />
       <Content>
         <Card style={{ flex: 0 }}>
           <CardItem>
             <Left>
               <Body>
-                <Text>Tour Name</Text>
-                <Text note>Date Created</Text>
+                <Text>{props.tour.name}</Text>
+                <Text note>Created: {props.tour.createdAt.slice(0, 10)}</Text>
               </Body>
             </Left>
           </CardItem>
           <CardItem>
             <Body>
-              {/* Insert Refrence Image for start point here */}
-              <Image
-                source={{ uri: "Image URL" }}
+              {/* <Image
+                source={props.tour.startIm}
                 style={{ height: 200, width: 200, flex: 1 }}
-              />
-              <Text>Tour Description Here</Text>
+              /> */}
+              <Text>{props.tour.description}</Text>
             </Body>
           </CardItem>
-          {/* <CardItem>
-            <Left>
-              <Button transparent textStyle={{ color: "#87838B" }}>
-                <Icon name="logo-github" />
-                <Text>1,926 stars</Text>
-              </Button>
-            </Left>
-          </CardItem> */}
         </Card>
       </Content>
       <Footer>
-          <FooterTab>
-            <Button>
-              <Text>Start Tour</Text>
-            </Button>
-            <Button onPress = {() => props.deselectTour()}>
-              <Text>Back to All Tours</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <FooterTab>
+          <Button onPress={() => props.deselectTour()}>
+            <Text>Back to Tours</Text>
+          </Button>
+          <Button onPress={props._getExperienceButtonOnPress(
+            props.AR_NAVIGATOR_TYPE, 
+            props.tour.id
+          )}>
+            <Text>Start Tour</Text>
+          </Button>
+        </FooterTab>
+      </Footer>
     </Container>
-  )
-}
+  );
+};
 
-export default IndividualTourView
+export default IndividualTourView;

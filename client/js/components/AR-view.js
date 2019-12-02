@@ -28,21 +28,21 @@ export default class ARView extends Component {
   render() {
     return (
       <View>
-        <Button
+        {/* <Button
           style={styles.buttons}
           onPress={this.props._getExperienceButtonOnPress(
             this.props.AR_NAVIGATOR_TYPE
           )}
         >
-          <Text style={styles.buttonText}>AR Viewer</Text>
-        </Button>
+          <Text style={styles.buttonText}>Tour Viewer</Text>
+        </Button> */}
         <Button
           style={styles.button}
           onPress={this.props._getExperienceButtonOnPress(
             this.props.AR_EDITOR_TYPE
           )}
         >
-          <Text style={styles.buttonText}>AR Editor</Text>
+          <Text style={styles.buttonText}>Tour Editor</Text>
         </Button>
       </View>
     );
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
     width: 150
   },
   button: {
-    marginTop: 10,
+    marginTop: 100,
     alignSelf: "center",
     width: 150
   }

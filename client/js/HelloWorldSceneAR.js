@@ -17,7 +17,6 @@ import {
   ViroMaterials
 } from "react-viro";
 import axios from "axios";
-//import console from "console";
 
 export default class HelloWorldSceneAR extends Component {
   constructor() {
@@ -36,14 +35,15 @@ export default class HelloWorldSceneAR extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(2); //<---- Hardcoded!! change this!
+    this.getTourData(this.props.sceneNavigator.viroAppProps.tourId); //<---- Hardcoded!! change this!
   }
 
   async getTourData(id) {
     try {
       const { data } = await axios.get(
-        `http://192.168.1.159:3000/api/points/${id}`
-      ); //<--- change for deployment
+        `https://ar-guides.herokuapp.com/api/points/${id}` //<--- change for deployment
+      );
+
       this.setState({
         dataPoints: data
       });
@@ -54,7 +54,8 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized}>
+      //onTrackingUpdated={this._onInitialized}
+      <ViroARScene>
         <ViroText
           text={this.state.text}
           scale={[0.5, 0.5, 0.5]}
