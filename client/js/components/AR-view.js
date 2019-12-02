@@ -34,7 +34,7 @@ export default class ARView extends Component {
             this.props.AR_NAVIGATOR_TYPE
           )}
         >
-          <Text style={styles.buttonText}>AR Viewer</Text>
+          <Text style={styles.buttonText}>Tour Viewer</Text>
         </Button>
         <Button
           style={styles.button}
@@ -42,7 +42,7 @@ export default class ARView extends Component {
             this.props.AR_EDITOR_TYPE
           )}
         >
-          <Text style={styles.buttonText}>AR Editor</Text>
+          <Text style={styles.buttonText}>Tour Editor</Text>
         </Button>
       </View>
     );
