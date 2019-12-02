@@ -17,7 +17,6 @@ import {
 } from "native-base";
 
 const IndividualTourView = props => {
-  console.log("The props are .....", props);
   return (
     <Container>
       <Content>

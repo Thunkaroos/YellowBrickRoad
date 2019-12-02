@@ -16,7 +16,7 @@ export const auth = (email, password, method) => {
   return async dispatch => {
     let res;
     try {
-      res = await axios.post(`https://ar-guides.herokuapp.com/api/auth/${method}`, {
+      res = await axios.post(`https://ar-guides.herokuapp.com/auth/${method}`, {
         email,
         password
       });

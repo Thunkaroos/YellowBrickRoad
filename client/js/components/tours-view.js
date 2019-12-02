@@ -25,7 +25,6 @@ export default connect(
     }
 
     render() {
-      console.log("The selectedTour is ......", this.props.selectedTour);
       return (
         <Container>
           {this.props.selectedTour && this.props.selectedTour.id ? (
