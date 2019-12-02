@@ -27,7 +27,7 @@ export const deselectTour = () => ({
 export const getAllTours = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`http://192.168.1.159:3000/api/tours`)
+      const {data} = await axios.get(`http://172.16.22.215:3000/api/tours`)
       dispatch(gotAllTours(data)) 
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ export const getAllTours = () => {
 export const getTour = (id) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`http://192.168.1.159:3000/api/tours/${id}`)
+      const {data} = await axios.get(`http://172.16.22.215:3000/api/tours/${id}`)
       dispatch(gotTour(data)) 
     } catch (error) {
       console.log(error)
@@ -49,7 +49,7 @@ export const getTour = (id) => {
 export const getUsersTour = (id) => {
   return async dispatch => {
     try {
-      const {data} = await axiox.get(`http://192.168.1.159:3000/api/tours/users/${id}`)
+      const {data} = await axiox.get(`http://172.16.22.215:3000/api/tours/users/${id}`)
       dispatch(gotUsersTour(data))
     } catch (error) {
     console.log(error)
