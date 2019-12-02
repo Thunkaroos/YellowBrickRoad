@@ -19,7 +19,7 @@
 - Viro
   - AR JS Library useful for development of AR apps
 - Node.js
-- GraphQL
+- Postgres
   - Storing user created tours/directions
 - Native Base
   - UI Library for react native

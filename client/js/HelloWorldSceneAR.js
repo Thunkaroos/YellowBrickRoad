@@ -36,14 +36,14 @@ export default class HelloWorldSceneAR extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(2); //<---- Hardcoded!! change this!
+    this.getTourData(1); //<---- Hardcoded!! change this!
   }
 
   async getTourData(id) {
     try {
       const { data } = await axios.get(
-        `http://172.16.23.25:3000/api/points/${id}`
-      ); //<--- change for deployment
+        `https://ar-guides.herokuapp.com/api/points/${id}` //<--- change for deployment
+      ); 
       this.setState({
         dataPoints: data
       });

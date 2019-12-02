@@ -129,7 +129,10 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <TourView />
+              <TourView
+                _getARNavigator={this._getARNavigator}
+                AR_NAVIGATOR_TYPE={AR_NAVIGATOR_TYPE}
+              />
             </Tab>
           </Tabs>
         </Container>
