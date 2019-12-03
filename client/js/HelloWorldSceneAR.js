@@ -54,8 +54,7 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      //onTrackingUpdated={this._onInitialized}
-      <ViroARScene>
+      <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroText
           text={this.state.text}
           scale={[0.5, 0.5, 0.5]}
@@ -104,8 +103,11 @@ ViroMaterials.createMaterials({
     // roughness: 0.7,
     // metalness: 0.3,
     // lightingModel: "PBR",
-    diffuseColor: "yellow"
+    // diffuseColor: "yellow"
     // diffuseTexture: require('../assets/1K-brick_wall_white-diffuse.jpg')
+    shininess: 2.0,
+    lightingModel: "Lambert",
+    diffuseTexture: require("./res/earth.jpeg")
   }
 });
 
