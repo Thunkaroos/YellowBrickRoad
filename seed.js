@@ -20,12 +20,14 @@ const tours = [
     name: "Python to Java",
     description:
       "A tour from the developers work area in Python to the Java Room",
-    startImg: "https://i.imgur.com/jUdAds1.jpg"
+    startImg: "https://i.imgur.com/jUdAds1.jpg",
+    userId: 1
   },
   {
     name: "Python to Oasis",
     description: "A tour from the developers work area in Python to the Oasis",
-    startImg: "https://i.imgur.com/jUdAds1.jpg"
+    startImg: "https://i.imgur.com/jUdAds1.jpg",
+    userId: 2
   },
   {
     name: "Tour 3",

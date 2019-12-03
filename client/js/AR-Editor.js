@@ -35,9 +35,9 @@ export default class AREditor extends Component {
     this._onButtonTap = this._onButtonTap.bind(this);
   }
 
-  componentDidMount() {
-    this.getTourData(1); //<---- Hardcoded!! change this!
-  }
+  // componentDidMount() {
+  //   this.getTourData(1); //<---- Hardcoded!! change this!
+  // }
 
   async getTourData(id) {
     try {
