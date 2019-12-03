@@ -1,6 +1,7 @@
 "use strict";
 
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import { StyleSheet } from "react-native";
 
@@ -17,16 +18,40 @@ import {
   ViroMaterials
 } from "react-viro";
 import axios from "axios";
-//import console from "console";
 
-export default class AREditor extends Component {
+
+const mapStateToProps = state => ({
+    tours: state.tours.tours,
+    selectedTour: state.tours.selectedTour,
+    dataPoints: state.points
+  })
+
+const mapDispatchToProps = dispatch => ({
+  getAllTours: () => dispatch(getAllTours()),
+  getTour: id => dispatch(getTour(id)),
+  deselectTour: () => dispatch(deselectTour()),
+  // addPoint: (point) => dispatch(addPoint(point))
+})
+
+// export default connect(
+//   state => ({
+//     tours: state.tours.tours,
+//     selectedTour: state.tours.selectedTour
+//   }),
+//   dispatch => ({
+//     getAllTours: () => dispatch(getAllTours()),
+//     getTour: id => dispatch(getTour(id)),
+//     deselectTour: () => dispatch(deselectTour())
+//   })
+// )
+export default class unconnectedAREditor extends Component {
   constructor() {
     super();
 
     // Set initial state here
     this.state = {
       text: "Initializing AR...",
-      dataPoints: [[0, 0, -1]]
+      // dataPoints: [[0, 0, -1]]
     };
 
     // bind 'this' to functions
@@ -36,13 +61,15 @@ export default class AREditor extends Component {
   }
 
   componentDidMount() {
-    this.getTourData(1); //<---- Hardcoded!! change this!
+    // this.getTourData(1); //<---- Hardcoded!! change this!
+    console.log('In the editor, this is ------->', this);
+    // console.log('In the editor, the store is ----->', store);
   }
 
   async getTourData(id) {
     try {
       const { data } = await axios.get(
-        `https://ar-guides.herokuapp.com/api/points/${id}`
+        `http://ar-guides.herokuapp.com/api/points/${id}`
       ); //<--- change for deployment
       this.setState({
         dataPoints: data
@@ -53,6 +80,7 @@ export default class AREditor extends Component {
   }
 
   render() {
+    console.log('The props dataPoints is ----->', this.props.dataPoints);
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroARPlane />
@@ -67,7 +95,7 @@ export default class AREditor extends Component {
             dragType="FixedToWorld"
             onDrag={() => {}}
             position={[0, 0, -2]}
-            points={this.state.dataPoints}
+            points={this.props.dataPoints}
             thickness={0.2}
             materials={["brick"]}
           />
@@ -89,6 +117,9 @@ export default class AREditor extends Component {
   }
 
   _onInitialized(state, reason) {
+    console.log('The state is ----->', state);
+    console.log('The reason is ----->', reason);
+    console.log('The ViroConstants is ----->', ViroConstants);
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"
@@ -121,4 +152,5 @@ var styles = StyleSheet.create({
   }
 });
 
+const AREditor = connect(mapStateToProps, mapDispatchToProps)(unconnectedAREditor);
 module.exports = AREditor;

@@ -38,6 +38,8 @@ import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
+import { addPoint } from "./client/js/store/points.js";
+
 
 /*
  TODO: Insert your API key below
@@ -47,7 +49,6 @@ var sharedProps = {
 };
 
 // Sets the default scene you want for AR and VR
-//var InitialARScene = require("./client/js/HelloWorldSceneAR");
 var InitialARScene = require("./client/js/HelloWorldSceneAR");
 var InitialARSceneEditor = require("./client/js/AR-Editor");
 var InitialVRScene = require("./client/js/HelloWorldScene");
@@ -72,16 +73,14 @@ export default class App extends Component {
       page: 1,
       tourId: ""
     };
-    this._onInitialized = this._onInitialized.bind(this);
+    this._startApp = this._startApp.bind(this);
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    );
+    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
-    this.tabHandler = this.tabHandler.bind(this);
+    this.tabHandler = this.tabHandler.bind(this)
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -105,7 +104,7 @@ export default class App extends Component {
         <Container>
           <StatusBar />
           <Header style={styles.header} hasTabs />
-          <Tabs page={this.state.page} initialPage={this.state.initialPage}>
+          <Tabs  page = {this.state.page} initialPage = {this.state.initialPage}>
             <Tab
               heading={
                 <TabHeading style={styles.header}>
@@ -113,7 +112,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm tabHandler={this.tabHandler} />
+              <AuthForm tabHandler = {this.tabHandler}/>
             </Tab>
 
             <Tab
@@ -180,107 +179,110 @@ export default class App extends Component {
 
   _getAREditor() {
     return (
-      <View style={styles.outer}>
-        <ViroARSceneNavigator
-          {...this.state.sharedProps}
-          initialScene={{ scene: InitialARSceneEditor }}
-          onExitViro={this._exitViro}
-        />
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 10,
-            alignItems: "flex-start"
-          }}
-        >
-          <TouchableHighlight
-            onPress={() => this._exitViro()}
-            style={styles.buttons}
-            underlayColor={"#00000000"}
+      <Provider store={store}>
+        <View style={styles.outer}>
+          <ViroARSceneNavigator
+            {...this.state.sharedProps}
+            initialScene={{ scene: InitialARSceneEditor }}
+            onExitViro={this._exitViro}
+          />
+          <View
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 10,
+              alignItems: "flex-start"
+            }}
           >
-            <Image source={require("./client/js/res/icon_left_w.png")} />
-          </TouchableHighlight>
-        </View>
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 25,
-            alignItems: "flex-end"
-          }}
-        >
-          <TouchableHighlight
-            style={styles.buttons}
-            underlayColor={"#00000000"}
+            <TouchableHighlight
+              onPress={() => this._exitViro()}
+              style={styles.buttons}
+              underlayColor={"#00000000"}
+            >
+              <Image source={require("./client/js/res/icon_left_w.png")} />
+            </TouchableHighlight>
+          </View>
+          <View
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 25,
+              alignItems: "flex-end"
+            }}
           >
-            <Image source={require("./client/js/res/icon_repeat.png")} />
-          </TouchableHighlight>
-        </View>
-        <View
-          style={{
-            position: "absolute",
-            left: 10,
-            right: 0,
-            bottom: 20,
-            alignItems: "flex-start"
-          }}
-        >
-          <TouchableHighlight
-            style={styles.UIButton}
-            underlayColor={"#00000000"}
-            onTrackingUpdated={this._onInitialized}
+            <TouchableHighlight
+              style={styles.buttons}
+              underlayColor={"#00000000"}
+            >
+              <Image source={require("./client/js/res/icon_repeat.png")} />
+            </TouchableHighlight>
+          </View>
+          <View
+            style={{
+              position: "absolute",
+              left: 10,
+              right: 0,
+              bottom: 20,
+              alignItems: "flex-start"
+            }}
           >
-            <Text style={styles.buttonText}>Start</Text>
-            {/* <Image source={require("./client/js/res/button_start.png")} /> */}
-          </TouchableHighlight>
-        </View>
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 15,
-            bottom: 20,
-            alignItems: "flex-end"
-          }}
-        >
-          <TouchableHighlight
-            style={styles.UIButton}
-            underlayColor={"#00000000"}
+            <TouchableHighlight
+              onPress = {(e) => this._startApp()}
+              style={styles.UIButton}
+              underlayColor={"#00000000"}
+              // onTrackingUpdated={this._onInitialized}
+            >
+              <Text style={styles.buttonText}>Start</Text>
+              {/* <Image source={require("./client/js/res/button_start.png")} /> */}
+            </TouchableHighlight>
+          </View>
+          <View
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 15,
+              bottom: 20,
+              alignItems: "flex-end"
+            }}
           >
-            <Text style={styles.buttonText}>Stop</Text>
-            {/* <Image source={require("./client/js/res/button_stop.png")} /> */}
-          </TouchableHighlight>
-        </View>
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 20,
-            alignItems: "center"
-          }}
-        >
-          <TouchableHighlight
-            style={styles.MainButton}
-            underlayColor={"#00000000"}
+            <TouchableHighlight
+              style={styles.UIButton}
+              underlayColor={"#00000000"}
+            >
+              <Text style={styles.buttonText}>Stop</Text>
+              {/* <Image source={require("./client/js/res/button_stop.png")} /> */}
+            </TouchableHighlight>
+          </View>
+          <View
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 20,
+              alignItems: "center"
+            }}
           >
-            <Text style={styles.mainButtonText}>Drop</Text>
-            {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
-          </TouchableHighlight>
+            <TouchableHighlight
+              onPress = {(e) => store.dispatch(addPoint([0, 0, -10]))}
+              style={styles.MainButton}
+              underlayColor={"#00000000"}
+            >
+              <Text style={styles.mainButtonText}>Drop</Text>
+              {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
+            </TouchableHighlight>
+          </View>
         </View>
-      </View>
+      </Provider>
     );
   }
 
-  tabHandler() {
-    this.setState({
-      page: 2,
-      initialPage: 2
-    });
-  }
+ tabHandler() {
+   this.setState({
+  page: 2,
+  initialPage: 2
+})}
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
@@ -311,7 +313,8 @@ export default class App extends Component {
     });
   }
 
-  _onInitialized(state, reason) {
+  _startApp(state, reason) {
+    console.log('Hello there!');
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"
@@ -364,7 +367,7 @@ var styles = StyleSheet.create({
   },
   UIButton: {
     width: 80,
-    height: 40,
+    height: 80,
     paddingTop: 5,
     // paddingBottom: 20,
     // marginTop: 10,
