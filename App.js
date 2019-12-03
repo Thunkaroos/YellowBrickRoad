@@ -48,7 +48,7 @@ var sharedProps = {
 
 // Sets the default scene you want for AR and VR
 //var InitialARScene = require("./client/js/HelloWorldSceneAR");
-var InitialARScene = require("./client/js/test_view")
+var InitialARScene = require("./client/js/HelloWorldSceneAR");
 var InitialARSceneEditor = require("./client/js/AR-Editor");
 var InitialVRScene = require("./client/js/HelloWorldScene");
 
@@ -77,9 +77,11 @@ export default class App extends Component {
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
+    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
+      this
+    );
     this._exitViro = this._exitViro.bind(this);
-    this.tabHandler = this.tabHandler.bind(this)
+    this.tabHandler = this.tabHandler.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -103,7 +105,7 @@ export default class App extends Component {
         <Container>
           <StatusBar />
           <Header style={styles.header} hasTabs />
-          <Tabs  page = {this.state.page} initialPage = {this.state.initialPage}>
+          <Tabs page={this.state.page} initialPage={this.state.initialPage}>
             <Tab
               heading={
                 <TabHeading style={styles.header}>
@@ -111,7 +113,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm tabHandler = {this.tabHandler}/>
+              <AuthForm tabHandler={this.tabHandler} />
             </Tab>
 
             <Tab
@@ -273,11 +275,12 @@ export default class App extends Component {
     );
   }
 
- tabHandler() {
-   this.setState({
-  page: 2,
-  initialPage: 2
-})}
+  tabHandler() {
+    this.setState({
+      page: 2,
+      initialPage: 2
+    });
+  }
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
