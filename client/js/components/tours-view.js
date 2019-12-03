@@ -4,12 +4,12 @@ import TourTabItem from "./tour-tab-item";
 import IndividualTourView from "./individual-tour-view";
 import { connect } from "react-redux";
 import { getAllTours, getTour, deselectTour } from "../store/tour";
-
+import { StyleSheet } from "react-native";
 
 export default connect(
   state => ({
     tours: state.tours.tours,
-    selectedTour: state.tours.selectedTour,
+    selectedTour: state.tours.selectedTour
   }),
   dispatch => ({
     getAllTours: () => dispatch(getAllTours()),
@@ -28,16 +28,20 @@ export default connect(
     render() {
       return (
         <Container>
-
           {this.props.selectedTour && this.props.selectedTour.id ? (
             <IndividualTourView
               tour={this.props.selectedTour}
               deselectTour={this.props.deselectTour}
-              _getExperienceButtonOnPress={this.props._getExperienceButtonOnPress}
+              _getExperienceButtonOnPress={
+                this.props._getExperienceButtonOnPress
+              }
               AR_NAVIGATOR_TYPE={this.props.AR_NAVIGATOR_TYPE}
             />
           ) : (
             <Content>
+              <Header style={styles.header}>
+                <Text style={styles.headerText}>Tours</Text>
+              </Header>
               <List>
                 {this.props.tours.map(tour => (
                   <TourTabItem
@@ -54,3 +58,13 @@ export default connect(
     }
   }
 );
+
+var styles = StyleSheet.create({
+  header: {
+    backgroundColor: "white"
+  },
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 18
+  }
+});

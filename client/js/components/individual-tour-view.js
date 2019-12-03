@@ -16,7 +16,6 @@ import {
   FooterTab
 } from "native-base";
 
-
 const IndividualTourView = props => {
   return (
     <Container>
@@ -27,15 +26,18 @@ const IndividualTourView = props => {
               <Body>
                 <Text>{props.tour.name}</Text>
                 <Text note>Created: {props.tour.createdAt.slice(0, 10)}</Text>
+                <Text> </Text>
+                <Text note>Face this way before beginning this tour</Text>
               </Body>
             </Left>
           </CardItem>
           <CardItem>
             <Body>
-              {/* <Image
-                source={props.tour.startIm}
+              <Image
+                source={`${props.tour.startImg}`}
                 style={{ height: 200, width: 200, flex: 1 }}
-              /> */}
+              />
+              <Text note>Description: </Text>
               <Text>{props.tour.description}</Text>
             </Body>
           </CardItem>
@@ -46,10 +48,12 @@ const IndividualTourView = props => {
           <Button onPress={() => props.deselectTour()}>
             <Text>Back to Tours</Text>
           </Button>
-          <Button onPress={props._getExperienceButtonOnPress(
-            props.AR_NAVIGATOR_TYPE, 
-            props.tour.id
-          )}>
+          <Button
+            onPress={props._getExperienceButtonOnPress(
+              props.AR_NAVIGATOR_TYPE,
+              props.tour.id
+            )}
+          >
             <Text>Start Tour</Text>
           </Button>
         </FooterTab>

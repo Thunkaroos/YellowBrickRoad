@@ -20,31 +20,31 @@ const tours = [
     name: "Tour 1",
     description: "TEST OF TOUR 1",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 2",
     description: "TEST OF TOUR 2",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 3",
     description: "TEST OF TOUR 3",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 4",
     description: "TEST OF TOUR 4",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 5",
     description: "TEST OF TOUR 5",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   }
 ];
 
