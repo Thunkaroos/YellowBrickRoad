@@ -1,48 +1,23 @@
 import React, { Component } from "react";
 
-import {
-  AppRegistry,
-  Text,
-  View,
-  StyleSheet,
-  PixelRatio,
-  TouchableHighlight,
-  StatusBar
-} from "react-native";
-import {
-  Container,
-  Tabs,
-  Tab,
-  TabHeading,
-  Spinner,
-  Header,
-  Icon,
-  Button,
-  Form,
-  Label,
-  Input,
-  Item,
-  Content
-} from "native-base";
+import { Text, View, StyleSheet } from "react-native";
+import { Button, Header } from "native-base";
 export default class ARView extends Component {
   render() {
     return (
       <View>
-        {/* <Button
-          style={styles.buttons}
-          onPress={this.props._getExperienceButtonOnPress(
-            this.props.AR_NAVIGATOR_TYPE
-          )}
-        >
-          <Text style={styles.buttonText}>Tour Viewer</Text>
-        </Button> */}
+        <Header style={styles.header}>
+          <Text style={styles.headerText}>Create your own Tour</Text>
+        </Header>
         <Button
           style={styles.button}
           onPress={this.props._getExperienceButtonOnPress(
             this.props.AR_EDITOR_TYPE
           )}
         >
-          <Text style={styles.buttonText}>Tour Editor</Text>
+          <View>
+            <Text style={styles.buttonText}>Tour Editor</Text>
+          </View>
         </Button>
       </View>
     );
@@ -50,20 +25,22 @@ export default class ARView extends Component {
 }
 
 var styles = StyleSheet.create({
-  buttonText: {
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 20,
-    marginLeft: 33
+  header: {
+    backgroundColor: "white"
   },
-  buttons: {
-    marginTop: 200,
-    alignSelf: "center",
-    width: 150
+  headerText: {
+    fontWeight: "bold",
+    fontSize: 18
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 24,
+    marginLeft: 25
   },
   button: {
-    marginTop: 100,
+    marginTop: 50,
     alignSelf: "center",
-    width: 150
+    width: 160,
+    height: 60
   }
 });
