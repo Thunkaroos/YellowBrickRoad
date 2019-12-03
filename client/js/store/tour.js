@@ -51,7 +51,7 @@ export const getTour = id => {
 export const getUsersTour = (id) => {
   return async dispatch => {
     try {
-      const {data} = await axiox.get(`http://172.16.22.215:3000/api/tours/users/${id}`)
+      const {data} = await axios.get(`https://ar-guides.herokuapp.com/api/tours/users/${id}`)
       dispatch(gotUsersTour(data))
     } catch (error) {
     console.log(error)
