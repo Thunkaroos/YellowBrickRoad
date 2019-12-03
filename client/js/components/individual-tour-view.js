@@ -17,6 +17,7 @@ import {
 } from "native-base";
 
 const IndividualTourView = props => {
+  console.log(props.tour.startImg);
   return (
     <Container>
       <Content>
@@ -33,10 +34,12 @@ const IndividualTourView = props => {
           </CardItem>
           <CardItem>
             <Body>
-              <Image
-                source={`${props.tour.startImg}`}
-                style={{ height: 200, width: 200, flex: 1 }}
-              />
+              {props.tour.startImg && (
+                <Image
+                  source={{ uri: `${props.tour.startImg}` }}
+                  style={{ height: 300, width: 200, flex: 1 }}
+                />
+              )}
               <Text note>Description: </Text>
               <Text>{props.tour.description}</Text>
             </Body>

@@ -17,16 +17,15 @@ const users = [
 
 const tours = [
   {
-    name: "Tour 1",
-    description: "TEST OF TOUR 1",
-    startImg:
-      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
+    name: "Python to Java",
+    description:
+      "A tour from the developers work area in Python to the Java Room",
+    startImg: "https://i.imgur.com/jUdAds1.jpg"
   },
   {
-    name: "Tour 2",
-    description: "TEST OF TOUR 2",
-    startImg:
-      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
+    name: "Python to Oasis",
+    description: "A tour from the developers work area in Python to the Oasis",
+    startImg: "https://i.imgur.com/jUdAds1.jpg"
   },
   {
     name: "Tour 3",
