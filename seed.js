@@ -59,14 +59,14 @@ const points = [
     stepNum: 2,
     x: 0,
     y: 0,
-    z: -9,
+    z: -8,
     tourId: 1
   },
   {
     stepNum: 3,
     x: 10,
     y: 0,
-    z: -9,
+    z: -8,
     tourId: 1
   },
   {
@@ -80,14 +80,14 @@ const points = [
     stepNum: 2,
     x: 0,
     y: 0,
-    z: -9,
+    z: -8,
     tourId: 2
   },
   {
     stepNum: 3,
     x: 10,
     y: 0,
-    z: -9,
+    z: -8,
     tourId: 2
   },
   {
