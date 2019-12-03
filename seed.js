@@ -17,34 +17,33 @@ const users = [
 
 const tours = [
   {
-    name: "Tour 1",
-    description: "TEST OF TOUR 1",
-    startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+    name: "Python to Java",
+    description:
+      "A tour from the developers work area in Python to the Java Room",
+    startImg: "https://i.imgur.com/jUdAds1.jpg"
   },
   {
-    name: "Tour 2",
-    description: "TEST OF TOUR 2",
-    startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+    name: "Python to Oasis",
+    description: "A tour from the developers work area in Python to the Oasis",
+    startImg: "https://i.imgur.com/jUdAds1.jpg"
   },
   {
     name: "Tour 3",
     description: "TEST OF TOUR 3",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 4",
     description: "TEST OF TOUR 4",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   },
   {
     name: "Tour 5",
     description: "TEST OF TOUR 5",
     startImg:
-      "http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
   }
 ];
 
