@@ -16,7 +16,6 @@ import TourTabItem from "./tour-tab-item";
 export const Profile = props => {
   const user = props.user;
 
-  console.log("------------%%%%%%%%%", props);
   return (
     <View>
       <Header>
