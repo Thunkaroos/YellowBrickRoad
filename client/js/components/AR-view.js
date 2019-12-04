@@ -31,12 +31,12 @@ class unconnectedARView extends Component {
           <Text style={styles.headerText}>Create your own Tour</Text>
           <Text></Text>
         </Header>
-        {/* {(this.state.error) ? (this.state.error) : null} */}
+        {(this.state.error) ? (this.state.error) : null}
         <Button
           style={styles.button}
-          // onPress={
-          //   (this.props.user) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : this.renderError()
-          // }
+          onPress={
+            (this.props.user) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : this.renderError
+          }
         >
           <View>
             <Text style={styles.buttonText}>Tour Editor</Text>
