@@ -49,6 +49,13 @@ const tours = [
     startImg:
       "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",
     userId: 2
+  },
+  {
+    name: "Friends & Family Tour",
+    description: "Luxurious VIP tour EXPERIENCE of the Fullstack Academy Campus",
+    startImg:
+      "https://i.imgur.com/8P6qNnP.jpg",
+    userId: 2
   }
 ];
 
@@ -101,7 +108,70 @@ const points = [
     y: 0,
     z: -13.5,
     tourId: 2
-  }
+  },
+  {
+    stepNum: 1,
+    x: 0.000,
+    y: 0.000,
+    z:-0.200,
+    tourId: 6
+  },
+  {
+    stepNum: 2,
+    x: -1.103,
+    y: 0.060,
+    z: -17.132,
+    tourId: 6
+  },
+  {
+    stepNum: 3,
+    x: 2.183,
+    y: 0.028,
+    z: -19.571,
+    tourId: 6
+  },
+  {
+    stepNum: 4,
+    x: 14.749,
+    y: 0.023,
+    z: -21.459,
+    tourId: 6
+  },
+  {
+    stepNum: 5,
+    x: 14.692,
+    y: 0.030,
+    z: -21.525,
+    tourId: 6
+  },
+  {
+    stepNum: 6,
+    x: 15.441,
+    y: -0.026,
+    z: -8.258,
+    tourId: 6
+  },
+  {
+    stepNum: 7,
+    x: 7.280,
+    y: -0.047,
+    z: -7.598,
+    tourId: 6
+  },
+  {
+    stepNum: 8,
+    x: 8.240,
+    y: -0.076,
+    z: -0.302,
+    tourId: 6
+  },
+  {
+    stepNum: 9,
+    x: -0.318,
+    y: -0.031,
+    z: -0.488,
+    tourId: 6
+  },
 ];
 
 const seed = async () => {
