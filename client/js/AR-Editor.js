@@ -42,7 +42,7 @@ export default class AREditor extends Component {
   async getTourData(id) {
     try {
       const { data } = await axios.get(
-        `https://172.16.22.28:3001/api/points/${id}`
+        `https://ar-guides.herokuapp.com/api/points/${id}`
       ); //<--- change for deployment
       this.setState({
         dataPoints: data
