@@ -53,7 +53,7 @@ router.post('/', async (req, res, next) => {
     const newTour = await Tour.create({
       name: req.body.name,
       description: req.body.description,
-      startImg: req.body.startImg,  
+      startImg: "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",  
       userId: 1
     })
     res.status(201).send(newTour)
