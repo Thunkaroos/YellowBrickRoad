@@ -14,7 +14,7 @@ export const addPoint = point => ({
 })
 
 const initialState = {
-  points: [[0, 0, -1]],
+  points: [[0, 0, -0.2]],
   pointCount: 1
 }
 
