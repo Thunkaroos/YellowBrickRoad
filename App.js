@@ -51,10 +51,8 @@ var sharedProps = {
 // Sets the default scene you want for AR and VR
 var InitialARScene = require("./client/js/HelloWorldSceneAR");
 var InitialARSceneEditor = require("./client/js/AR-Editor");
-var InitialVRScene = require("./client/js/HelloWorldScene");
 
 var UNSET = "UNSET";
-var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
 var AR_EDITOR_TYPE = "AREditor";
 
@@ -69,7 +67,6 @@ export default class App extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      initialPage: 0,
       page: 1,
       tourId: ""
     };
@@ -77,8 +74,9 @@ export default class App extends Component {
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
-    this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
+    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
+      this
+    );
     this._exitViro = this._exitViro.bind(this);
     this.tabHandler = this.tabHandler.bind(this)
   }
@@ -88,8 +86,6 @@ export default class App extends Component {
   render() {
     if (this.state.navigatorType == UNSET) {
       return this._getExperienceSelector();
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
-      return this._getVRNavigator();
     } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
       return this._getARNavigator();
     } else if (this.state.navigatorType == AR_EDITOR_TYPE) {
@@ -104,7 +100,7 @@ export default class App extends Component {
         <Container>
           <StatusBar />
           <Header style={styles.header} hasTabs />
-          <Tabs  page = {this.state.page} initialPage = {this.state.initialPage}>
+          <Tabs page={this.state.page}>
             <Tab
               heading={
                 <TabHeading style={styles.header}>
@@ -156,15 +152,7 @@ export default class App extends Component {
           viroAppProps={{ tourId: this.state.tourId }}
           onExitViro={this._exitViro}
         />
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 10,
-            alignItems: "flex-start"
-          }}
-        >
+        <View style={styles.backButtonPosition}>
           <TouchableHighlight
             onPress={() => this._exitViro()}
             style={styles.buttons}
@@ -186,15 +174,7 @@ export default class App extends Component {
             initialScene={{ scene: InitialARSceneEditor }}
             onExitViro={this._exitViro}
           />
-          <View
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: 10,
-              alignItems: "flex-start"
-            }}
-          >
+          <View style={styles.backButtonPosition}>
             <TouchableHighlight
               onPress={() => this._exitViro()}
               style={styles.buttons}
@@ -203,15 +183,7 @@ export default class App extends Component {
               <Image source={require("./client/js/res/icon_left_w.png")} />
             </TouchableHighlight>
           </View>
-          <View
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: 25,
-              alignItems: "flex-end"
-            }}
-          >
+          <View style={styles.undoButtonPosition}>
             <TouchableHighlight
               style={styles.buttons}
               underlayColor={"#00000000"}
@@ -219,58 +191,30 @@ export default class App extends Component {
               <Image source={require("./client/js/res/icon_repeat.png")} />
             </TouchableHighlight>
           </View>
-          <View
-            style={{
-              position: "absolute",
-              left: 10,
-              right: 0,
-              bottom: 20,
-              alignItems: "flex-start"
-            }}
-          >
+          <View style={styles.startButtonPosition}>
             <TouchableHighlight
-              onPress = {(e) => this._startApp()}
               style={styles.UIButton}
               underlayColor={"#00000000"}
-              // onTrackingUpdated={this._onInitialized}
+              onTrackingUpdated={this._onInitialized}
             >
               <Text style={styles.buttonText}>Start</Text>
-              {/* <Image source={require("./client/js/res/button_start.png")} /> */}
             </TouchableHighlight>
           </View>
-          <View
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 15,
-              bottom: 20,
-              alignItems: "flex-end"
-            }}
-          >
+          <View style={styles.stopButtonPositon}>
             <TouchableHighlight
               style={styles.UIButton}
               underlayColor={"#00000000"}
             >
               <Text style={styles.buttonText}>Stop</Text>
-              {/* <Image source={require("./client/js/res/button_stop.png")} /> */}
             </TouchableHighlight>
           </View>
-          <View
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 20,
-              alignItems: "center"
-            }}
-          >
+          <View style={styles.dropButtonPosition}>
             <TouchableHighlight
               onPress = {(e) => store.dispatch(dropPoint())}
               style={styles.MainButton}
               underlayColor={"#00000000"}
             >
               <Text style={styles.mainButtonText}>Drop</Text>
-              {/* <Image source={require("./client/js/res/button_marker.png")} /> */}
             </TouchableHighlight>
           </View>
         </View>
@@ -278,21 +222,10 @@ export default class App extends Component {
     );
   }
 
- tabHandler() {
-   this.setState({
-  page: 2,
-  initialPage: 2
-})}
-
-  // Returns the ViroSceneNavigator which will start the VR experience
-  _getVRNavigator() {
-    return (
-      <ViroVRSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: InitialVRScene }}
-        onExitViro={this._exitViro}
-      />
-    );
+  tabHandler() {
+    this.setState({
+      page: 2
+    });
   }
 
   // This function returns an anonymous/lambda function to be used
@@ -326,6 +259,41 @@ export default class App extends Component {
 }
 
 var styles = StyleSheet.create({
+  backButtonPosition: {
+    position: "absolute",
+    left: -10,
+    right: 0,
+    top: 10,
+    alignItems: "flex-start"
+  },
+  undoButtonPosition: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 25,
+    alignItems: "flex-end"
+  },
+  startButtonPosition: {
+    position: "absolute",
+    left: 10,
+    right: 0,
+    bottom: 20,
+    alignItems: "flex-start"
+  },
+  stopButtonPositon: {
+    position: "absolute",
+    left: 0,
+    right: 15,
+    bottom: 20,
+    alignItems: "flex-end"
+  },
+  dropButtonPosition: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 20,
+    alignItems: "center"
+  },
   viroContainer: {
     flex: 1,
     backgroundColor: "black"
@@ -351,10 +319,7 @@ var styles = StyleSheet.create({
   buttons: {
     height: 80,
     width: 80,
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
     backgroundColor: "#00000000",
     borderRadius: 10,
     borderWidth: 1,
@@ -369,19 +334,25 @@ var styles = StyleSheet.create({
     width: 80,
     height: 80,
     paddingTop: 5,
-    // paddingBottom: 20,
-    // marginTop: 10,
-    // marginBottom: 10,
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "black"
   },
+  TopUIButton: {
+    width: 80,
+    height: 40,
+    paddingTop: 5,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    marginTop: 40
+  },
   buttonText: {
     color: "black",
     textAlign: "center",
     fontSize: 25
-    // marginLeft: 33
   },
   mainButtonText: {
     color: "black",
@@ -393,9 +364,6 @@ var styles = StyleSheet.create({
     width: 80,
     height: 80,
     paddingTop: 5,
-    // paddingBottom: 20,
-    // marginTop: 10,
-    // marginBottom: 10,
     backgroundColor: "white",
     borderRadius: 50,
     borderWidth: 1,

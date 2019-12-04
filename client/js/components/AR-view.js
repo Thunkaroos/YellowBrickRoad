@@ -8,6 +8,7 @@ export default class ARView extends Component {
       <View>
         <Header style={styles.header}>
           <Text style={styles.headerText}>Create your own Tour</Text>
+          <Text></Text>
         </Header>
         <Button
           style={styles.button}
@@ -26,11 +27,15 @@ export default class ARView extends Component {
 
 var styles = StyleSheet.create({
   header: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    textAlignVertical: "center",
+    maxHeight: 40
   },
   headerText: {
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
+    position: "absolute",
+    top: 10
   },
   buttonText: {
     color: "white",

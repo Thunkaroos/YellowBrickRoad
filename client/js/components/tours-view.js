@@ -62,10 +62,14 @@ export default connect(
 
 var styles = StyleSheet.create({
   header: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    textAlignVertical: "center",
+    maxHeight: 40
   },
   headerText: {
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
+    position: "absolute",
+    top: 10
   }
 });
