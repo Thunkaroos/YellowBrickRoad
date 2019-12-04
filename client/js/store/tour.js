@@ -27,7 +27,7 @@ export const deselectTour = () => ({
 export const getAllTours = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`https://ar-guides.herokuapp.com/api/tours`);
+      const { data } = await axios.get(`https://172.16.22.28:3001/api/tours`);
       dispatch(gotAllTours(data));
     } catch (error) {
       console.log(error);
@@ -39,7 +39,7 @@ export const getTour = id => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        `https://ar-guides.herokuapp.com/api/tours/${id}`
+        `https://172.16.22.28:3001/api/tours/${id}`
       );
       dispatch(gotTour(data));
     } catch (error) {
@@ -51,7 +51,7 @@ export const getTour = id => {
 export const getUsersTour = (id) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`https://ar-guides.herokuapp.com/api/tours/users/${id}`)
+      const {data} = await axios.get(`https://172.16.22.28:3001/api/tours/users/${id}`)
       dispatch(gotUsersTour(data))
     } catch (error) {
     console.log(error)
