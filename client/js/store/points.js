@@ -1,89 +1,32 @@
 import axios from "axios";
 
 const ADD_POINT = "ADD_POINT";
-// const GET_TOUR = "GET_TOUR";
-// const GET_USERS_TOUR = "GET_USERS_TOUR";
-// const DESELECT_TOUR = "DESELECT_TOUR";
+const DROP_POINT = "DROP_POINT";
 
-// const gotAllTours = tours => ({
-//   type: GET_ALL_TOURS,
-//   tours
-// });
+
+export const dropPoint = () => ({
+  type: DROP_POINT,
+})
 
 export const addPoint = point => ({
     type: ADD_POINT,
     point
 })
 
-// const gotTour = tour => ({
-//   type: GET_TOUR,
-//   tour
-// });
-
-// const gotUsersTour = usersTour => ({
-//   type: GET_USERS_TOUR,
-//   usersTour
-// })
-
-// export const deselectTour = () => ({
-//   type: DESELECT_TOUR
-// });
-
-// export const getAllTours = () => {
-//   return async dispatch => {
-//     try {
-//       const { data } = await axios.get(`https://ar-guides.herokuapp.com/api/tours`);
-//       dispatch(gotAllTours(data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getTour = id => {
-//   return async dispatch => {
-//     try {
-//       const { data } = await axios.get(
-//         `https://ar-guides.herokuapp.com/api/tours/${id}`
-//       );
-//       dispatch(gotTour(data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getUsersTour = (id) => {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.get(`https://ar-guides.herokuapp.com/api/tours/users/${id}`)
-//       dispatch(gotUsersTour(data))
-//     } catch (error) {
-//     console.log(error)
-//   }
-// }
-// }
-
-// const initialState = {
-//   points: [],
-//   selectedTour: {},
-//   usersTour: {}
-// }
+const initialState = {
+  points: [[0, 0, -1]],
+  pointCount: 1
+}
 
 
-const pointsReducer = (points = [[0, 0, -1]], action) => {
+const pointsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POINT:
-      return [...points, action.point];
-    // case GET_TOUR:
-    //   return {...state, selectedTour: action.tour}
-    // case GET_USERS_TOUR:
-    //   return {...state, usersTour: action.usersTour}
-
-    // case DESELECT_TOUR:
-    //   return { ...state, selectedTour: {} };
+      return {...state, points: [...state.points, action.point]}
+    case DROP_POINT:
+      return {...state, pointCount: state.pointCount + 1}
     default:
-      return points;
+      return state;
   }
 };
 

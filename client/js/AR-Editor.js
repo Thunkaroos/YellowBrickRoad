@@ -23,27 +23,17 @@ import axios from "axios";
 const mapStateToProps = state => ({
     tours: state.tours.tours,
     selectedTour: state.tours.selectedTour,
-    dataPoints: state.points
+    points: state.points.points,
+    pointCount: state.points.pointCount,
   })
 
 const mapDispatchToProps = dispatch => ({
   getAllTours: () => dispatch(getAllTours()),
   getTour: id => dispatch(getTour(id)),
-  deselectTour: () => dispatch(deselectTour()),
+  deselectTour: () => dispatch(deselectTour())
   // addPoint: (point) => dispatch(addPoint(point))
 })
 
-// export default connect(
-//   state => ({
-//     tours: state.tours.tours,
-//     selectedTour: state.tours.selectedTour
-//   }),
-//   dispatch => ({
-//     getAllTours: () => dispatch(getAllTours()),
-//     getTour: id => dispatch(getTour(id)),
-//     deselectTour: () => dispatch(deselectTour())
-//   })
-// )
 export default class unconnectedAREditor extends Component {
   constructor() {
     super();
@@ -61,9 +51,16 @@ export default class unconnectedAREditor extends Component {
   }
 
   componentDidMount() {
-    // this.getTourData(1); //<---- Hardcoded!! change this!
     console.log('In the editor, this is ------->', this);
-    // console.log('In the editor, the store is ----->', store);
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('Check mate!');
+    console.log('this.props.pointsCount is ----->', this.props.pointCount);
+    console.log('prevProps.pointCount is ----->', prevProps.pointCount);
+    if (this.props.pointCount >= prevProps.pointCount) {
+      console.log('We have added a point!');
+    }
   }
 
   async getTourData(id) {
@@ -72,7 +69,7 @@ export default class unconnectedAREditor extends Component {
         `http://ar-guides.herokuapp.com/api/points/${id}`
       ); //<--- change for deployment
       this.setState({
-        dataPoints: data
+        points: data
       });
     } catch (error) {
       console.log(error);
@@ -80,7 +77,7 @@ export default class unconnectedAREditor extends Component {
   }
 
   render() {
-    console.log('The props dataPoints is ----->', this.props.dataPoints);
+    console.log('The props are ----->', this.props);
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroARPlane />
@@ -117,9 +114,6 @@ export default class unconnectedAREditor extends Component {
   }
 
   _onInitialized(state, reason) {
-    console.log('The state is ----->', state);
-    console.log('The reason is ----->', reason);
-    console.log('The ViroConstants is ----->', ViroConstants);
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"

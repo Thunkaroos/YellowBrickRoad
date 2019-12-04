@@ -38,7 +38,7 @@ import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
-import { addPoint } from "./client/js/store/points.js";
+import { dropPoint } from "./client/js/store/points.js";
 
 
 /*
@@ -265,7 +265,7 @@ export default class App extends Component {
             }}
           >
             <TouchableHighlight
-              onPress = {(e) => store.dispatch(addPoint([0, 0, -10]))}
+              onPress = {(e) => store.dispatch(dropPoint())}
               style={styles.MainButton}
               underlayColor={"#00000000"}
             >
