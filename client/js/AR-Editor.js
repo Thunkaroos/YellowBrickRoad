@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { StyleSheet } from "react-native";
 
 import { Button } from "native-base";
-import { addPoint }  from './store/points'
+import { addPoint, undoPoint }  from './store/points'
 
 import {
   ViroNode,
@@ -58,13 +58,8 @@ export default class unconnectedAREditor extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log('Check mate!');
-    // console.log('this.props.pointsCount is ----->', this.props.pointCount);
-    // console.log('prevProps.pointCount is ----->', prevProps.pointCount);
     if (this.props.pointCount > prevProps.pointCount) {
-      // console.log('We have added a point!');
       this.cameraRef.current.getCameraOrientationAsync().then((orientation) => {
-        // console.log('The camera position is ------->', orientation.position);
         this.props.addPoint(orientation.position);
       })
     }
