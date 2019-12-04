@@ -79,7 +79,16 @@ export default class unconnectedAREditor extends Component {
   }
 
   render() {
-    // console.log('In the render, the props are ----->', this.props.points);
+    let newArr = [];
+    this.props.points.forEach((point) => {
+      let newPoint = [];
+      point.forEach((el) => {
+        newPoint.push(el.toFixed(3));
+      })
+      newArr.push(newPoint);
+    })
+
+    console.log('The points are', newArr);
     return (
       <ViroARScene 
       onTrackingUpdated={this._onInitialized}

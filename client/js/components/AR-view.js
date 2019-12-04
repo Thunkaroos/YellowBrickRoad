@@ -35,7 +35,9 @@ class unconnectedARView extends Component {
         <Button
           style={styles.button}
           onPress={
-            (this.props.user) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : this.renderError
+            // (this.props.user) ? 
+            this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) 
+            // : this.renderError
           }
         >
           <View>
