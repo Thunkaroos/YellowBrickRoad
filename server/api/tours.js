@@ -48,6 +48,17 @@ router.get('/user/:id', async (req,res,next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const newTour = await Tour.create({
+      name: req.body.name,
+      description: req.body.description,
+      startImg: req.body.startImg  
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 
 module.exports = router
