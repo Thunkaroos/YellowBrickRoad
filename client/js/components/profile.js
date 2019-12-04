@@ -16,32 +16,6 @@ import TourTabItem from "./tour-tab-item";
 export const Profile = props => {
   const user = props.user;
 
-<<<<<<< HEAD
-
-export const Profile = (props) => {
-    const user = props.user;
-    return (
-      
-        <View>
-            <Header>
-            <Text>Your Tours</Text>
-                <Left/>
-                <Body>
-                    <Text>Welcome Back {user.email}</Text>
-                </Body>
-                <Right />   
-            </Header>    
-            <List > 
-              {props.tours.filter(tour => tour.userId === user.id).map(tour => <TourTabItem key={tour.id} tour = {tour} getTour = {props.getTour} tabHandler = {props.tabHandler}/>)}
-            </List>
-            <Button transparent style={styles.loginButton} onPress = {props.logout}>
-                <Text>Logout</Text>
-            </Button>
-        </View>
-    )
-}
-=======
-  console.log("------------%%%%%%%%%", props);
   return (
     <View>
       <Header>
@@ -69,7 +43,6 @@ export const Profile = (props) => {
     </View>
   );
 };
->>>>>>> master
 
 var styles = StyleSheet.create({
   buttonText: {
