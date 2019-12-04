@@ -54,10 +54,12 @@ router.post('/', async (req, res, next) => {
       name: req.body.name,
       description: req.body.description,
       startImg: req.body.startImg  
+    })
   } catch (error) {
     next(error)
   }
 })
+
 
 
 
