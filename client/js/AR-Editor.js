@@ -1,10 +1,12 @@
 "use strict";
 
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import { StyleSheet } from "react-native";
 
 import { Button } from "native-base";
+import { addPoint }  from './store/points'
 
 import {
   ViroNode,
@@ -17,35 +19,64 @@ import {
   ViroMaterials
 } from "react-viro";
 import axios from "axios";
-//import console from "console";
 
-export default class AREditor extends Component {
+
+const mapStateToProps = state => ({
+    tours: state.tours.tours,
+    selectedTour: state.tours.selectedTour,
+    points: state.points.points,
+    pointCount: state.points.pointCount,
+  })
+
+const mapDispatchToProps = dispatch => ({
+  getAllTours: () => dispatch(getAllTours()),
+  getTour: id => dispatch(getTour(id)),
+  deselectTour: () => dispatch(deselectTour()),
+  addPoint: (point) => {
+    // console.log('addPoint function is ------>', addPoint);
+    // console.log('the passed in point is ------>', point);
+    dispatch(addPoint(point))
+  }
+})
+
+export default class unconnectedAREditor extends Component {
   constructor() {
     super();
 
-    // Set initial state here
     this.state = {
       text: "Initializing AR...",
-      dataPoints: [[0, 0, -1]]
     };
+    this.cameraRef = React.createRef();
 
-    // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
     this._onButtonGaze = this._onButtonGaze.bind(this);
     this._onButtonTap = this._onButtonTap.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getTourData(1); //<---- Hardcoded!! change this!
-  // }
+  componentDidMount() {
+    // console.log('In the componentDiDMount, the props are ------>', this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+    // console.log('Check mate!');
+    // console.log('this.props.pointsCount is ----->', this.props.pointCount);
+    // console.log('prevProps.pointCount is ----->', prevProps.pointCount);
+    if (this.props.pointCount > prevProps.pointCount) {
+      // console.log('We have added a point!');
+      this.cameraRef.current.getCameraOrientationAsync().then((orientation) => {
+        // console.log('The camera position is ------->', orientation.position);
+        this.props.addPoint(orientation.position);
+      })
+    }
+  }
 
   async getTourData(id) {
     try {
       const { data } = await axios.get(
-        `https://ar-guides.herokuapp.com/api/points/${id}`
+        `http://ar-guides.herokuapp.com/api/points/${id}`
       ); //<--- change for deployment
       this.setState({
-        dataPoints: data
+        points: data
       });
     } catch (error) {
       console.log(error);
@@ -53,8 +84,12 @@ export default class AREditor extends Component {
   }
 
   render() {
+    // console.log('In the render, the props are ----->', this.props.points);
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized}>
+      <ViroARScene 
+      onTrackingUpdated={this._onInitialized}
+      ref = {this.cameraRef}
+      >
         <ViroARPlane />
         <ViroText
           text={this.state.text}
@@ -67,7 +102,7 @@ export default class AREditor extends Component {
             dragType="FixedToWorld"
             onDrag={() => {}}
             position={[0, 0, -2]}
-            points={this.state.dataPoints}
+            points={this.props.points}
             thickness={0.2}
             materials={["brick"]}
           />
@@ -121,4 +156,5 @@ var styles = StyleSheet.create({
   }
 });
 
+const AREditor = connect(mapStateToProps, mapDispatchToProps)(unconnectedAREditor);
 module.exports = AREditor;

@@ -4,10 +4,12 @@ import {createLogger} from 'redux-logger'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import toursReducer from './tour'
 import userReducer from './user'
+import pointsReducer from './points'
 
 const rootReducer = combineReducers({
   tours: toursReducer,
   user: userReducer,
+  points: pointsReducer,
 })
 
 const middleware = composeWithDevTools(

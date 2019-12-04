@@ -38,6 +38,8 @@ import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
+import { dropPoint } from "./client/js/store/points.js";
+
 
 /*
  TODO: Insert your API key below
@@ -68,7 +70,7 @@ export default class App extends Component {
       page: 1,
       tourId: ""
     };
-    this._onInitialized = this._onInitialized.bind(this);
+    this._startApp = this._startApp.bind(this);
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
@@ -76,7 +78,7 @@ export default class App extends Component {
       this
     );
     this._exitViro = this._exitViro.bind(this);
-    this.tabHandler = this.tabHandler.bind(this);
+    this.tabHandler = this.tabHandler.bind(this)
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -106,7 +108,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm tabHandler={this.tabHandler} />
+              <AuthForm tabHandler = {this.tabHandler}/>
             </Tab>
 
             <Tab
@@ -165,55 +167,58 @@ export default class App extends Component {
 
   _getAREditor() {
     return (
-      <View style={styles.outer}>
-        <ViroARSceneNavigator
-          {...this.state.sharedProps}
-          initialScene={{ scene: InitialARSceneEditor }}
-          onExitViro={this._exitViro}
-        />
-        <View style={styles.backButtonPosition}>
-          <TouchableHighlight
-            onPress={() => this._exitViro()}
-            style={styles.buttons}
-            underlayColor={"#00000000"}
-          >
-            <Image source={require("./client/js/res/icon_left_w.png")} />
-          </TouchableHighlight>
+      <Provider store={store}>
+        <View style={styles.outer}>
+          <ViroARSceneNavigator
+            {...this.state.sharedProps}
+            initialScene={{ scene: InitialARSceneEditor }}
+            onExitViro={this._exitViro}
+          />
+          <View style={styles.backButtonPosition}>
+            <TouchableHighlight
+              onPress={() => this._exitViro()}
+              style={styles.buttons}
+              underlayColor={"#00000000"}
+            >
+              <Image source={require("./client/js/res/icon_left_w.png")} />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.undoButtonPosition}>
+            <TouchableHighlight
+              style={styles.buttons}
+              underlayColor={"#00000000"}
+            >
+              <Image source={require("./client/js/res/icon_repeat.png")} />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.startButtonPosition}>
+            <TouchableHighlight
+              style={styles.UIButton}
+              underlayColor={"#00000000"}
+              onTrackingUpdated={this._onInitialized}
+            >
+              <Text style={styles.buttonText}>Start</Text>
+            </TouchableHighlight>
+          </View>
+          <View style={styles.stopButtonPositon}>
+            <TouchableHighlight
+              style={styles.UIButton}
+              underlayColor={"#00000000"}
+            >
+              <Text style={styles.buttonText}>Stop</Text>
+            </TouchableHighlight>
+          </View>
+          <View style={styles.dropButtonPosition}>
+            <TouchableHighlight
+              onPress = {(e) => store.dispatch(dropPoint())}
+              style={styles.MainButton}
+              underlayColor={"#00000000"}
+            >
+              <Text style={styles.mainButtonText}>Drop</Text>
+            </TouchableHighlight>
+          </View>
         </View>
-        <View style={styles.undoButtonPosition}>
-          <TouchableHighlight
-            style={styles.buttons}
-            underlayColor={"#00000000"}
-          >
-            <Image source={require("./client/js/res/icon_repeat.png")} />
-          </TouchableHighlight>
-        </View>
-        <View style={styles.startButtonPosition}>
-          <TouchableHighlight
-            style={styles.UIButton}
-            underlayColor={"#00000000"}
-            onTrackingUpdated={this._onInitialized}
-          >
-            <Text style={styles.buttonText}>Start</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.stopButtonPositon}>
-          <TouchableHighlight
-            style={styles.UIButton}
-            underlayColor={"#00000000"}
-          >
-            <Text style={styles.buttonText}>Stop</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.dropButtonPosition}>
-          <TouchableHighlight
-            style={styles.MainButton}
-            underlayColor={"#00000000"}
-          >
-            <Text style={styles.mainButtonText}>Drop</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
+      </Provider>
     );
   }
 
@@ -241,7 +246,8 @@ export default class App extends Component {
     });
   }
 
-  _onInitialized(state, reason) {
+  _startApp(state, reason) {
+    console.log('Hello there!');
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"
@@ -326,7 +332,7 @@ var styles = StyleSheet.create({
   },
   UIButton: {
     width: 80,
-    height: 40,
+    height: 80,
     paddingTop: 5,
     backgroundColor: "white",
     borderRadius: 10,
