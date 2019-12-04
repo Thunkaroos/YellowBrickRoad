@@ -33,19 +33,22 @@ const tours = [
     name: "Tour 3",
     description: "TEST OF TOUR 3",
     startImg:
-      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",
+    userId: 1
   },
   {
     name: "Tour 4",
     description: "TEST OF TOUR 4",
     startImg:
-      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",
+    userId: 1
   },
   {
     name: "Tour 5",
     description: "TEST OF TOUR 5",
     startImg:
-      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg"
+      "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",
+    userId: 2
   }
 ];
 
@@ -108,14 +111,18 @@ const seed = async () => {
     await Promise.all(
       users.map(user => {
         return User.create(user);
-      }),
-      tours.map(tour => {
-        return Tour.create(tour);
-      }),
-      points.map(point => {
-        return Point.create(point);
       })
-    );
+    ),
+      await Promise.all(
+        tours.map(tour => {
+          return Tour.create(tour);
+        })
+      ),
+      await Promise.all(
+        points.map(point => {
+          return Point.create(point);
+        })
+      );
 
     // seed your database here!
 
