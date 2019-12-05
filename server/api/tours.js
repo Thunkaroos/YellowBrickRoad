@@ -48,6 +48,21 @@ router.get('/user/:id', async (req,res,next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const newTour = await Tour.create({
+      name: req.body.name,
+      description: req.body.description,
+      startImg: "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg",  
+      userId: req.body.userId
+    })
+    res.status(201).send(newTour)
+  } catch (error) {
+   next(error)
+  }
+})
+
+
 
 
 module.exports = router
