@@ -38,7 +38,7 @@ import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
-import { dropPoint } from "./client/js/store/points.js";
+import { dropPoint, undoPoint } from "./client/js/store/points.js";
 
 
 /*
@@ -59,6 +59,8 @@ var AR_EDITOR_TYPE = "AREditor";
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
+
+console.disableYellowBox = true;
 
 export default class App extends Component {
   constructor() {
@@ -185,6 +187,11 @@ export default class App extends Component {
           </View>
           <View style={styles.undoButtonPosition}>
             <TouchableHighlight
+              onPress = {(e) => {
+                if (store.getState().points.pointCount > 1) {
+                  store.dispatch(undoPoint())
+                }
+              }}
               style={styles.buttons}
               underlayColor={"#00000000"}
             >
@@ -247,7 +254,6 @@ export default class App extends Component {
   }
 
   _startApp(state, reason) {
-    console.log('Hello there!');
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"

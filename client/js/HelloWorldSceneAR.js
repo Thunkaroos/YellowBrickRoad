@@ -103,11 +103,11 @@ ViroMaterials.createMaterials({
     // roughness: 0.7,
     // metalness: 0.3,
     // lightingModel: "PBR",
-    // diffuseColor: "yellow"
+    diffuseColor: "yellow" 
     // diffuseTexture: require('../assets/1K-brick_wall_white-diffuse.jpg')
-    shininess: 2.0,
-    lightingModel: "Lambert",
-    diffuseTexture: require("./res/earth.jpeg")
+    // shininess: 2.0,
+    // lightingModel: "Lambert",
+    // diffuseTexture: require("./res/earth.jpeg")
   }
 });
 
