@@ -1,6 +1,6 @@
-# AR-Guides
+# Yellow Brick Road
 
-## An AR app for creating directions and tours in AR and for users to explore places and get where they want to go.
+## An AR app for creating and experiencing tours in AR.
 
 ### MVP Goals:
 
@@ -16,10 +16,10 @@
 
 - React Native
   - Used for mobile app development
-- Viro
+- ViroAR
   - AR JS Library useful for development of AR apps
+- Native Base
+  - UI Library for react native
 - Node.js
 - Postgres
   - Storing user created tours/directions
-- Native Base
-  - UI Library for react native

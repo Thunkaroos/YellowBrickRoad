@@ -228,7 +228,7 @@ export default class App extends Component {
               style={styles.buttons}
               underlayColor={"#00000000"}
             >
-              <Image source={require("./client/js/res/icon_left_w.png")} />
+              <Image source={require("./client/js/res/icon_left.png")} />
             </TouchableHighlight>
           </View>
           <View style={styles.undoButtonPosition}>
@@ -347,9 +347,9 @@ var styles = StyleSheet.create({
   },
   undoButtonPosition: {
     position: "absolute",
-    left: 0,
+    left: 100,
     right: 0,
-    top: 25,
+    top: 45,
     alignItems: "flex-end"
   },
   startButtonPosition: {
@@ -412,7 +412,6 @@ var styles = StyleSheet.create({
   UIButton: {
     width: 80,
     height: 40,
-    paddingTop: 5,
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
@@ -438,7 +437,8 @@ var styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 25,
-    marginTop: 18
+    marginTop: 18,
+    fontWeight: "bold"
   },
   MainButton: {
     width: 80,
@@ -456,7 +456,8 @@ var styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     fontSize: 20,
-    marginLeft: 25
+    marginLeft: 22,
+    fontWeight: "bold"
   },
   loginButton: {
     marginTop: 25,
@@ -469,16 +470,17 @@ var styles = StyleSheet.create({
     right: 0,
     top: 10,
     alignItems: "flex-start",
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     marginLeft: 10
   },
   XButtonText: {
     marginLeft: 10,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: 25
   },
   SubmitbuttonText: {
-    color: "black",
+    color: "white",
     textAlign: "center",
     fontSize: 20,
     marginLeft: 20
