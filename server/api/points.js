@@ -14,7 +14,20 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/')
+router.post('/', async (req, res, next) => {
+  try {
+    const tourPoints = await Point.create({
+      stepNum: req.body.stepNum,
+      x: req.body.points[0],
+      y: req.body.points[1],
+      z: req.body.points[2],
+      tourId: req.body.tourId
+    })
+    res.status(201).send(tourPoints)
+  } catch (error) {
+    next(error)
+  }
+})
 
 
 module.exports = router

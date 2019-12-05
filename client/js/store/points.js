@@ -3,6 +3,7 @@ import axios from "axios";
 const ADD_POINT = "ADD_POINT";
 const DROP_POINT = "DROP_POINT";
 const UNDO_POINT = "UNDO_POINT";
+const RESET_POINTS = "RESET_POINTS";
 
 
 export const dropPoint = () => ({
@@ -13,6 +14,25 @@ export const addPoint = point => ({
     type: ADD_POINT,
     point
 })
+
+const resetPoints = () => ({
+  type: RESET_POINTS
+})
+
+export const postPoints = (points, stepNum, tourId) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/points`, {
+        points,
+        stepNum,
+        tourId
+      })
+      dispatch(resetPoints())
+    } catch (error) {
+      
+    }
+  }
+}
 
 export const undoPoint = () => ({
   type: UNDO_POINT,
@@ -32,6 +52,8 @@ const pointsReducer = (state = initialState, action) => {
       return {...state, pointCount: state.pointCount + 1}
     case UNDO_POINT:
       return {...state, pointCount: state.pointCount - 1, points: state.points.slice(0, -1)}
+    case RESET_POINTS:
+      return initialState
     default:
       return state;
   }
