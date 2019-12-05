@@ -6,6 +6,7 @@ const GET_USERS_TOUR = "GET_USERS_TOUR";
 const DESELECT_TOUR = "DESELECT_TOUR";
 const POST_TOUR = "POST_TOUR";
 
+
 const gotAllTours = tours => ({
   type: GET_ALL_TOURS,
   tours
@@ -29,6 +30,8 @@ const createTour = tour => ({
   type: POST_TOUR,
   tour
 })
+
+
 
 export const getAllTours = () => {
   return async dispatch => {
@@ -81,12 +84,12 @@ export const postedTour = (name, description, startImg, userId) => {
   }
 }
 
+
 const initialState = {
   tours: [],
   selectedTour: {},
   usersTour: {}
 }
-
 
 const toursReducer = (state = initialState, action) => {
   switch (action.type) {
