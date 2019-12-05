@@ -9,6 +9,8 @@ import {
   Right,
   Button,
   List,
+  Row,
+  Col
 } from "native-base";
 import TourTabItem from "./tour-tab-item";
 
@@ -17,12 +19,15 @@ export const Profile = props => {
 
   return (
     <View>
-      <Header>
-        <Left />
-        <Body>
-          <Text>Welcome Back {user.email}</Text>
-        </Body>
-        <Right />
+      <Header style={styles.header}>
+        <Col>
+          <Left />
+          <Text style={styles.headerText}>Welcome Back {user.email}</Text>
+          <Right />
+          <Left />
+          <Text style={styles.headerText}>Your Tours</Text>
+          <Right />
+        </Col>
       </Header>
       <List>
         {props.tours
@@ -54,5 +59,12 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: "center",
     width: 100
+  },
+  header: {
+    backgroundColor: "white"
+  },
+  headerText: {
+    fontWeight: "bold",
+    textAlign: "center"
   }
 });
