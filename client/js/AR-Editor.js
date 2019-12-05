@@ -101,9 +101,9 @@ export default class unconnectedAREditor extends Component {
           <ViroPolyline
             dragType="FixedToWorld"
             onDrag={() => {}}
-            position={[0, 0, -2]}
+            position={[0, -1, -2]}
             points={this.props.points}
-            thickness={0.2}
+            thickness={0.1}
             materials={["brick"]}
           />
         </ViroNode>
