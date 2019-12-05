@@ -32,7 +32,6 @@ const createTour = tour => ({
 })
 
 
-
 export const getAllTours = () => {
   return async dispatch => {
     try {

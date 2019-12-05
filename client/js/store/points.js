@@ -19,14 +19,13 @@ const postPoints = point => ({
   point
 })
 
-export const postPoints = (x, y, z, stepNum, tourId) => {
+export const postPoints = (points, stepNum, tourId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/points/${tourId}`, {
-        x,
-        y,
-        z,
-        stepNum
+      const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/points`, {
+        points,
+        stepNum,
+        tourId
       })
       dispatch(postPoints(data))
     } catch (error) {
@@ -48,7 +47,7 @@ const pointsReducer = (state = initialState, action) => {
     case DROP_POINT:
       return {...state, pointCount: state.pointCount + 1}
     case POST_POINTS:
-      return {...state, points: [...state.points, action.point]}
+      return initialState
     default:
       return state;
   }

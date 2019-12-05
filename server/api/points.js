@@ -18,9 +18,9 @@ router.post('/', async (req, res, next) => {
   try {
     const tourPoints = await Point.create({
       stepNum: req.body.stepNum,
-      x: req.body.x,
-      y: req.body.y,
-      z: req.body.z,
+      x: req.body.points[0],
+      y: req.body.points[1],
+      z: req.body.points[2],
       tourId: req.body.tourId
     })
     res.status(201).send(tourPoints)
