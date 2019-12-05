@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
 import { Text, View, StyleSheet } from "react-native";
-import { Button, Header } from "native-base";
+import { Button, Header, Form } from "native-base";
 import { connect } from 'react-redux'
 import { Overlay } from "react-native-elements";
+
 
 const mapStateToProps = state => ({
   user: state.user.user
@@ -36,43 +37,23 @@ class unconnectedARView extends Component {
         <View>
             <Overlay isVisible={this.state.isVisible}>
               <View style={styles.menu}>
-                <Form>
-                  <View style={styles.Form}>
-                    <Item floatingLabel>
-                      <Input
-                        placeholder="Tour Name"
-                        name="tourName"
-                        value={this.state.tourName}
-                        onChangeText={value =>
-                          this._handleChange("tourName", value)
-                        }
-                      />
-                    </Item>
-                    <Item floatingLabel>
-                      <Input
-                        placeholder="Description"
-                        name="description"
-                        value={this.state.description}
-                        onChangeText={value =>
-                          this._handleChange("description", value)
-                        }
-                      />
-                    </Item>
-                    <Button
-                      style={styles.loginButton}
-                      onPress={this._handleSubmit}
-                    >
-                      <Text style={styles.SubmitbuttonText}>Submit</Text>
-                    </Button>
-                  </View>
-                  <Button
+                <Button
                     transparent
                     style={styles.XButton}
-                    onPress={this.handleSubmit}
                     onPress={() => this._XButtonHandler()}
                   >
                     <Text style={styles.XButtonText}>X</Text>
-                  </Button>
+                </Button>
+                <Text> Make sure you're in the proper Start Position</Text>
+                <Form>
+                  <View style={styles.Form}>
+                    <Button
+                      style={styles.loginButton}
+                      onPress={this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE)}
+                    >
+                      <Text style={styles.SubmitbuttonText}>Start Editor</Text>
+                    </Button>
+                  </View>
                 </Form>
               </View>
             </Overlay>
@@ -84,7 +65,7 @@ class unconnectedARView extends Component {
         {(this.props.user && this.props.user.id) ? 
           <Button
             style={styles.button}
-            onPress={this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE)}
+            onPress={() => this._toggleOverlay()}
           >
             <View>
               <Text style={styles.buttonText}>Tour Editor</Text>
@@ -111,18 +92,12 @@ class unconnectedARView extends Component {
   }
 
   //Opens tour-form-overlay in AREditor
-  _endButtonHandler() {
+  _toggleOverlay() {
     this.setState({
       isVisible: true
     });
   }
-
-  _handleSubmit() {
-    const tourName = this.state.tourName;
-    const description = this.state.description;
-    //thunk here
-  }  
-  
+ 
 }
 
 export default ARView = connect(mapStateToProps, null)(unconnectedARView)
@@ -150,7 +125,16 @@ var styles = StyleSheet.create({
     width: 160,
     height: 60
   },
-  error: {
-    alignSelf: "center",
+    XButtonText: {
+      marginLeft: 10,
+      fontWeight: "bold",
+      fontSize: 25
+    },
+    SubmitbuttonText: {
+      color: "white",
+      textAlign: "center",
+      fontSize: 20,
+      marginLeft: 20
+    }
   }
-});
+);
