@@ -17,10 +17,11 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const tourPoints = await Point.create({
-      x: points.x,
-      y: points.y,
-      z: points.z,
-      tourId
+      stepNum: req.body.stepNum,
+      x: req.body.x,
+      y: req.body.y,
+      z: req.body.z,
+      tourId: req.body.tourId
     })
     res.status(201).send(tourPoints)
   } catch (error) {
