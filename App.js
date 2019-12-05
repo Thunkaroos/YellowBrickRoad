@@ -254,7 +254,6 @@ export default class App extends Component {
   }
 
   _startApp(state, reason) {
-    console.log('Hello there!');
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
         text: "Start Here!"
