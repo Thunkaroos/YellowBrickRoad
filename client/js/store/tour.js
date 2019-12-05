@@ -2,7 +2,6 @@ import axios from "axios";
 
 const GET_ALL_TOURS = "GET_ALL_TOURS";
 const GET_TOUR = "GET_TOUR";
-const GET_USERS_TOUR = "GET_USERS_TOUR";
 const DESELECT_TOUR = "DESELECT_TOUR";
 const POST_TOUR = "POST_TOUR";
 
@@ -17,11 +16,6 @@ const gotTour = tour => ({
   tour
 });
 
-const gotUsersTour = usersTour => ({
-  type: GET_USERS_TOUR,
-  usersTour
-})
-
 export const deselectTour = () => ({
   type: DESELECT_TOUR
 });
@@ -35,7 +29,9 @@ const createTour = tour => ({
 export const getAllTours = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(`https://ar-guides.herokuapp.com/api/tours`);
+      const { data } = await axios.get(
+        `https://ar-guides.herokuapp.com/api/tours`
+      );
       dispatch(gotAllTours(data));
     } catch (error) {
       console.log(error);
@@ -56,17 +52,6 @@ export const getTour = id => {
   };
 };
 
-export const getUsersTour = (id) => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get(`https://ar-guides.herokuapp.com/api/tours/users/${id}`)
-      dispatch(gotUsersTour(data))
-    } catch (error) {
-    console.log(error)
-  }
-}
-}
-
 export const postedTour = (name, description, startImg, userId) => {
   return async dispatch => {
     try {
@@ -78,7 +63,7 @@ export const postedTour = (name, description, startImg, userId) => {
       })
       dispatch(createTour(data))
     } catch (error) {
-      
+      console.log(error);
     }
   }
 }
@@ -86,8 +71,7 @@ export const postedTour = (name, description, startImg, userId) => {
 
 const initialState = {
   tours: [],
-  selectedTour: {},
-  usersTour: {}
+  selectedTour: {}
 }
 
 const toursReducer = (state = initialState, action) => {
@@ -95,9 +79,7 @@ const toursReducer = (state = initialState, action) => {
     case GET_ALL_TOURS:
       return { ...state, tours: [...action.tours] };
     case GET_TOUR:
-      return {...state, selectedTour: action.tour}
-    case GET_USERS_TOUR:
-      return {...state, usersTour: action.usersTour}
+      return { ...state, selectedTour: action.tour };
     case DESELECT_TOUR:
       return { ...state, selectedTour: {} };
     case POST_TOUR:

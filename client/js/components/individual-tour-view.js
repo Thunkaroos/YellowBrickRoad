@@ -17,7 +17,6 @@ import {
 } from "native-base";
 
 const IndividualTourView = props => {
-  console.log(props.tour.startImg);
   return (
     <Container>
       <Content>

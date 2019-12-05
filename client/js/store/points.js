@@ -3,6 +3,7 @@ import axios from "axios";
 const ADD_POINT = "ADD_POINT";
 const DROP_POINT = "DROP_POINT";
 const POST_POINTS = "POST_POINTS";
+const UNDO_POINT = "UNDO_POINT";
 
 
 export const dropPoint = () => ({
@@ -34,6 +35,10 @@ export const postPoints = (points, stepNum, tourId) => {
   }
 }
 
+export const undoPoint = () => ({
+  type: UNDO_POINT,
+})
+
 const initialState = {
   points: [[0, 0, -0.2]],
   pointCount: 1
@@ -46,6 +51,8 @@ const pointsReducer = (state = initialState, action) => {
       return {...state, points: [...state.points, action.point]}
     case DROP_POINT:
       return {...state, pointCount: state.pointCount + 1}
+    case UNDO_POINT:
+      return {...state, pointCount: state.pointCount - 1, points: state.points.slice(0, -1)}
     case POST_POINTS:
       return initialState
     default:

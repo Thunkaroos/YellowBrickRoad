@@ -2,19 +2,38 @@ import React, { Component } from "react";
 
 import { Text, View, StyleSheet } from "react-native";
 import { Button, Header } from "native-base";
-export default class ARView extends Component {
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+
+class unconnectedARView extends Component {
+
   render() {
+
+    let errorMessage;
+
+    if (this.props.user && this.props.user.id) {
+      errorMessage = null;
+    } else {
+      errorMessage = (
+        <Text style = {styles.error}>You must login/signup to create a Tour</Text>
+      )
+    }
+
     return (
+      
       <View>
         <Header style={styles.header}>
           <Text style={styles.headerText}>Create your own Tour</Text>
           <Text></Text>
         </Header>
+        {errorMessage}
         <Button
           style={styles.button}
-          onPress={this.props._getExperienceButtonOnPress(
-            this.props.AR_EDITOR_TYPE
-          )}
+          onPress={ (this.props.user && this.props.user.id) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : console.log('Not logged in!')
+          }
         >
           <View>
             <Text style={styles.buttonText}>Tour Editor</Text>
@@ -24,6 +43,8 @@ export default class ARView extends Component {
     );
   }
 }
+
+export default ARView = connect(mapStateToProps, null)(unconnectedARView)
 
 var styles = StyleSheet.create({
   header: {
@@ -47,5 +68,8 @@ var styles = StyleSheet.create({
     alignSelf: "center",
     width: 160,
     height: 60
+  },
+  error: {
+    alignSelf: "center",
   }
 });

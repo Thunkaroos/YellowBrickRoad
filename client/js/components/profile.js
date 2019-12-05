@@ -9,7 +9,6 @@ import {
   Right,
   Button,
   List,
-  Content
 } from "native-base";
 import TourTabItem from "./tour-tab-item";
 
