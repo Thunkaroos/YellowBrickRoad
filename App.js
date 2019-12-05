@@ -11,11 +11,9 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./client/js/store/index.js";
 import {
-  AppRegistry,
   Text,
   View,
   StyleSheet,
-  PixelRatio,
   TouchableHighlight,
   StatusBar,
   Image
@@ -26,20 +24,17 @@ import {
   Tab,
   TabHeading,
   Header,
-  Icon,
-  Button,
   Form,
-  Label,
-  Input,
   Item,
-  Content
+  Input,
+  Button
 } from "native-base";
-import { ViroVRSceneNavigator, ViroARSceneNavigator } from "react-viro";
+import { Overlay } from "react-native-elements";
+import { ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
 import { dropPoint, undoPoint } from "./client/js/store/points.js";
-
 
 /*
  TODO: Insert your API key below
@@ -70,7 +65,10 @@ export default class App extends Component {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
       page: 1,
-      tourId: ""
+      tourId: "",
+      isVisible: false,
+      tourName: "",
+      description: ""
     };
     this._startApp = this._startApp.bind(this);
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
@@ -80,7 +78,11 @@ export default class App extends Component {
       this
     );
     this._exitViro = this._exitViro.bind(this);
-    this.tabHandler = this.tabHandler.bind(this)
+    this.tabHandler = this.tabHandler.bind(this);
+    this._endButtonHandler = this._endButtonHandler.bind(this);
+    this._XButtonHandler = this._XButtonHandler.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleChange = this._handleChange.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -110,7 +112,7 @@ export default class App extends Component {
                 </TabHeading>
               }
             >
-              <AuthForm tabHandler = {this.tabHandler}/>
+              <AuthForm tabHandler={this.tabHandler} />
             </Tab>
 
             <Tab
@@ -176,6 +178,50 @@ export default class App extends Component {
             initialScene={{ scene: InitialARSceneEditor }}
             onExitViro={this._exitViro}
           />
+          <View>
+            <Overlay isVisible={this.state.isVisible}>
+              <View style={styles.menu}>
+                <Form>
+                  <View style={styles.Form}>
+                    <Item floatingLabel>
+                      <Input
+                        placeholder="Tour Name"
+                        name="tourName"
+                        value={this.state.tourName}
+                        onChangeText={value =>
+                          this._handleChange("tourName", value)
+                        }
+                      />
+                    </Item>
+                    <Item floatingLabel>
+                      <Input
+                        placeholder="Description"
+                        name="description"
+                        value={this.state.description}
+                        onChangeText={value =>
+                          this._handleChange("description", value)
+                        }
+                      />
+                    </Item>
+                    <Button
+                      style={styles.loginButton}
+                      onPress={this._handleSubmit}
+                    >
+                      <Text style={styles.SubmitbuttonText}>Submit</Text>
+                    </Button>
+                  </View>
+                  <Button
+                    transparent
+                    style={styles.XButton}
+                    onPress={this.handleSubmit}
+                    onPress={() => this._XButtonHandler()}
+                  >
+                    <Text style={styles.XButtonText}>X</Text>
+                  </Button>
+                </Form>
+              </View>
+            </Overlay>
+          </View>
           <View style={styles.backButtonPosition}>
             <TouchableHighlight
               onPress={() => this._exitViro()}
@@ -187,9 +233,9 @@ export default class App extends Component {
           </View>
           <View style={styles.undoButtonPosition}>
             <TouchableHighlight
-              onPress = {(e) => {
+              onPress={e => {
                 if (store.getState().points.pointCount > 1) {
-                  store.dispatch(undoPoint())
+                  store.dispatch(undoPoint());
                 }
               }}
               style={styles.buttons}
@@ -198,7 +244,7 @@ export default class App extends Component {
               <Image source={require("./client/js/res/icon_repeat.png")} />
             </TouchableHighlight>
           </View>
-          <View style={styles.startButtonPosition}>
+          {/* <View style={styles.startButtonPosition}>
             <TouchableHighlight
               style={styles.UIButton}
               underlayColor={"#00000000"}
@@ -206,18 +252,19 @@ export default class App extends Component {
             >
               <Text style={styles.buttonText}>Start</Text>
             </TouchableHighlight>
-          </View>
+          </View> */}
           <View style={styles.stopButtonPositon}>
-            <TouchableHighlight
+            <Button
               style={styles.UIButton}
               underlayColor={"#00000000"}
+              onPress={() => this._endButtonHandler()}
             >
-              <Text style={styles.buttonText}>Stop</Text>
-            </TouchableHighlight>
+              <Text style={styles.buttonText}>End</Text>
+            </Button>
           </View>
           <View style={styles.dropButtonPosition}>
             <TouchableHighlight
-              onPress = {(e) => store.dispatch(dropPoint())}
+              onPress={e => store.dispatch(dropPoint())}
               style={styles.MainButton}
               underlayColor={"#00000000"}
             >
@@ -253,6 +300,32 @@ export default class App extends Component {
     });
   }
 
+  //closes overlay and returns to AREditor
+  _XButtonHandler() {
+    this.setState({
+      isVisible: false
+    });
+  }
+
+  //Opens tour-form-overlay in AREditor
+  _endButtonHandler() {
+    this.setState({
+      isVisible: true
+    });
+  }
+
+  _handleSubmit() {
+    const tourName = this.state.tourName;
+    const description = this.state.description;
+    //thunk here
+  }
+
+  _handleChange(name, value) {
+    this.setState({
+      [name]: value
+    });
+  }
+
   _startApp(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL) {
       this.setState({
@@ -284,7 +357,7 @@ var styles = StyleSheet.create({
     left: 10,
     right: 0,
     bottom: 20,
-    alignItems: "flex-start"
+    alignItems: "baseline"
   },
   stopButtonPositon: {
     position: "absolute",
@@ -295,8 +368,8 @@ var styles = StyleSheet.create({
   },
   dropButtonPosition: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    left: 100,
+    right: 100,
     bottom: 20,
     alignItems: "center"
   },
@@ -338,12 +411,13 @@ var styles = StyleSheet.create({
   },
   UIButton: {
     width: 80,
-    height: 80,
+    height: 40,
     paddingTop: 5,
     backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "black"
+    borderColor: "black",
+    marginBottom: 15
   },
   TopUIButton: {
     width: 80,
@@ -358,7 +432,7 @@ var styles = StyleSheet.create({
   buttonText: {
     color: "black",
     textAlign: "center",
-    fontSize: 25
+    fontSize: 20
   },
   mainButtonText: {
     color: "black",
@@ -374,6 +448,40 @@ var styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     borderColor: "black"
+  },
+  Form: {
+    marginTop: 70
+  },
+  buttonText: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 20,
+    marginLeft: 25
+  },
+  loginButton: {
+    marginTop: 25,
+    alignSelf: "center",
+    width: 100
+  },
+  XButton: {
+    position: "absolute",
+    left: -10,
+    right: 0,
+    top: 10,
+    alignItems: "flex-start",
+    width: 30,
+    height: 30,
+    marginLeft: 10
+  },
+  XButtonText: {
+    marginLeft: 10,
+    fontWeight: "bold"
+  },
+  SubmitbuttonText: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 20,
+    marginLeft: 20
   }
 });
 
