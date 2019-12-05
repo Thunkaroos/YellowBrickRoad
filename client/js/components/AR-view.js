@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
 class unconnectedARView extends Component {
 
   render() {
-    console.log('The props are ----->', this);
 
     let errorMessage;
 
@@ -33,7 +32,7 @@ class unconnectedARView extends Component {
         {errorMessage}
         <Button
           style={styles.button}
-          onPress={ (this.props.user) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : console.log('Not logged in!')
+          onPress={ (this.props.user && this.props.user.id) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : console.log('Not logged in!')
           }
         >
           <View>

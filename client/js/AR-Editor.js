@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import { StyleSheet } from "react-native";
 
-import { Button } from "native-base";
 import { addPoint, undoPoint }  from './store/points'
 
 import {
@@ -14,7 +13,6 @@ import {
   ViroARScene,
   ViroText,
   ViroConstants,
-  ViroButton,
   ViroARPlane,
   ViroMaterials
 } from "react-viro";
@@ -33,8 +31,6 @@ const mapDispatchToProps = dispatch => ({
   getTour: id => dispatch(getTour(id)),
   deselectTour: () => dispatch(deselectTour()),
   addPoint: (point) => {
-    // console.log('addPoint function is ------>', addPoint);
-    // console.log('the passed in point is ------>', point);
     dispatch(addPoint(point))
   }
 })
@@ -54,7 +50,6 @@ export default class unconnectedAREditor extends Component {
   }
 
   componentDidMount() {
-    // console.log('In the componentDiDMount, the props are ------>', this.props);
   }
 
   componentDidUpdate(prevProps) {
@@ -79,16 +74,15 @@ export default class unconnectedAREditor extends Component {
   }
 
   render() {
-    let newArr = [];
-    this.props.points.forEach((point) => {
-      let newPoint = [];
-      point.forEach((el) => {
-        newPoint.push(el.toFixed(3));
-      })
-      newArr.push(newPoint);
-    })
+    // let newArr = [];
+    // this.props.points.forEach((point) => {
+    //   let newPoint = [];
+    //   point.forEach((el) => {
+    //     newPoint.push(el.toFixed(3));
+    //   })
+    //   newArr.push(newPoint);
+    // })
 
-    console.log('The points are', newArr);
     return (
       <ViroARScene 
       onTrackingUpdated={this._onInitialized}

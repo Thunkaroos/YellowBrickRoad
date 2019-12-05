@@ -23,7 +23,6 @@ export default connect(
     }
     componentDidMount() {
       this.props.getAllTours();
-      console.log('In the tour-view, the this is ----->', this);
     }
 
     render() {
