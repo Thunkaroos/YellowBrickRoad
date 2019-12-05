@@ -9,35 +9,31 @@ const mapStateToProps = state => ({
 })
 
 class unconnectedARView extends Component {
-  constructor() {
-    super()
-    this.state = {
-      error: '',
-    }
-
-    this.renderError = this.renderError.bind(this);
-  }
-
-  renderError() {
-    this.setState({
-      error: <Text>You must login/signup to create a Tour</Text>
-    })
-  }
 
   render() {
+    console.log('The props are ----->', this);
+
+    let errorMessage;
+
+    if (this.props.user && this.props.user.id) {
+      errorMessage = null;
+    } else {
+      errorMessage = (
+        <Text style = {styles.error}>You must login/signup to create a Tour</Text>
+      )
+    }
+
     return (
+      
       <View>
         <Header style={styles.header}>
           <Text style={styles.headerText}>Create your own Tour</Text>
           <Text></Text>
         </Header>
-        {(this.state.error) ? (this.state.error) : null}
+        {errorMessage}
         <Button
           style={styles.button}
-          onPress={
-            // (this.props.user) ? 
-            this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) 
-            // : this.renderError
+          onPress={ (this.props.user) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : console.log('Not logged in!')
           }
         >
           <View>
@@ -73,5 +69,8 @@ var styles = StyleSheet.create({
     alignSelf: "center",
     width: 160,
     height: 60
+  },
+  error: {
+    alignSelf: "center",
   }
 });

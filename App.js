@@ -60,6 +60,8 @@ var AR_EDITOR_TYPE = "AREditor";
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
+console.disableYellowBox = true;
+
 export default class App extends Component {
   constructor() {
     super();
