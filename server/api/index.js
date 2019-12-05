@@ -4,7 +4,6 @@ router.get('/help', (req, res, next) => {
   res.send('Hello World!')
 })
 
-router.use('/users', require('./user')); // matches all requests to /api/users/
 router.use('/tours', require('./tours'))
 router.use('/points', require('./points'))
 

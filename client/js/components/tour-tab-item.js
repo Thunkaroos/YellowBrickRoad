@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, ListItem, Left, Right } from "native-base";
-import { connect } from "react-redux";
 
 const TourTabItem = props => {
   return (

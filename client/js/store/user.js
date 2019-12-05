@@ -17,7 +17,7 @@ export const auth = (email, password, method) => {
     let res;
     try {
 
-      res = await axios.post(`https://ar-guides.herokuapp.com/${method}`, {
+      res = await axios.post(`https://ar-guides.herokuapp.com/auth/${method}`, {
         email,
         password
       });
