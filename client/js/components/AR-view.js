@@ -30,15 +30,24 @@ class unconnectedARView extends Component {
           <Text></Text>
         </Header>
         {errorMessage}
-        <Button
-          style={styles.button}
-          onPress={ (this.props.user && this.props.user.id) ? this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE) : console.log('Not logged in!')
-          }
-        >
-          <View>
-            <Text style={styles.buttonText}>Tour Editor</Text>
+        {(this.props.user && this.props.user.id) ? 
+          <Button
+            style={styles.button}
+            onPress={this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE)}
+          >
+            <View>
+              <Text style={styles.buttonText}>Tour Editor</Text>
+            </View>
+          </Button> :
+          <Button disabled
+            style={styles.button}
+          >
+            <View>
+              <Text style={styles.buttonText}>Tour Editor</Text>
           </View>
         </Button>
+        }
+        
       </View>
     );
   }
