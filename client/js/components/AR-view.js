@@ -44,14 +44,19 @@ class unconnectedARView extends Component {
                   >
                     <Text style={styles.XButtonText}>X</Text>
                 </Button>
-                <Text> Make sure you're in the proper Start Position</Text>
+                <Text
+                  style = {styles.overlayText}
+                >   Make sure you're in the proper    
+                       Start Position
+                
+                </Text>
                 <Form>
                   <View style={styles.Form}>
                     <Button
-                      style={styles.loginButton}
+                      style={styles.startButton}
                       onPress={this.props._getExperienceButtonOnPress(this.props.AR_EDITOR_TYPE)}
                     >
-                      <Text style={styles.SubmitbuttonText}>Start Editor</Text>
+                      <Text style={styles.startButtonText}>Start Editor</Text>
                     </Button>
                   </View>
                 </Form>
@@ -125,16 +130,26 @@ var styles = StyleSheet.create({
     width: 160,
     height: 60
   },
-    XButtonText: {
-      marginLeft: 10,
-      fontWeight: "bold",
-      fontSize: 25
+  XButtonText: {
+    marginLeft: 10,
+    fontWeight: "bold",
+    fontSize: 25
+  },
+  overlayText: {
+    marginTop: 80,
+    textAlign: "center",
+    fontSize: 18
+  },
+  startButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 20,
+    marginLeft: 20
     },
-    SubmitbuttonText: {
-      color: "white",
-      textAlign: "center",
-      fontSize: 20,
-      marginLeft: 20
+  startButton: {
+    marginTop: 85,
+    alignSelf: "center",
+    width: 137
     }
   }
 );
