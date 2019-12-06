@@ -1,36 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const morgan = require('morgan');
-const session = require('express-session');
-const passport = require('passport');
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser((user, done) => {
-  try {
-    done(null, user.id);
-  } catch (err) {
-    done(err);
-  }
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id)
-    .then(user => done(null, user))
-    .catch(done);
-});
-
-app.use(
-  session({
-    secret: process.env.GOOGLE || 'a wildly insecure secret',
-    resave: false,
-    saveUninitialized: false
-  })
-);
-
-app.use(morgan('dev'));
 
 // app.use(express.static(path.join(__dirname, '../public')));
 
