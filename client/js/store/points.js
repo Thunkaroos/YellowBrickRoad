@@ -15,7 +15,7 @@ export const addPoint = point => ({
     point
 })
 
-const resetPoints = () => ({
+export const resetPoints = () => ({
   type: RESET_POINTS
 })
 
@@ -27,9 +27,8 @@ export const postPoints = (points, stepNum, tourId) => {
         stepNum,
         tourId
       })
-      dispatch(resetPoints())
     } catch (error) {
-      
+      console.log('The error is ----->', error.response.data);
     }
   }
 }

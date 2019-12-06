@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server/index",
     "prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
-    "startdev": "node node_modules/react-native/local-cli/cli.js start && node server/index",
+    "startdev": "node node_modules/react-native/local-cli/cli.js start & node server/index",
     "test": "jest",
     "seed": "node seed.js",
     "start-server": "node server/index"

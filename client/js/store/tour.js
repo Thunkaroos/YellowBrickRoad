@@ -1,9 +1,10 @@
 import axios from "axios";
+import postPoints from './points';
 
 const GET_ALL_TOURS = "GET_ALL_TOURS";
 const GET_TOUR = "GET_TOUR";
 const DESELECT_TOUR = "DESELECT_TOUR";
-const POST_TOUR = "POST_TOUR";
+const ADD_TOUR = "ADD_TOUR";
 
 
 const gotAllTours = tours => ({
@@ -20,11 +21,10 @@ export const deselectTour = () => ({
   type: DESELECT_TOUR
 });
 
-const createTour = tour => ({
-  type: POST_TOUR,
+const addTour = tour => ({
+  type: ADD_TOUR,
   tour
 })
-
 
 export const getAllTours = () => {
   return async dispatch => {
@@ -52,18 +52,19 @@ export const getTour = id => {
   };
 };
 
-export const postedTour = (name, description, startImg, userId) => {
+export const postTour = (name, description, userId) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/tours`, {
         name,
         description,
-        startImg,
+        // startImg,
         userId
       })
-      dispatch(createTour(data))
+      dispatch(addTour(data))
+      return data
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   }
 }
@@ -82,7 +83,7 @@ const toursReducer = (state = initialState, action) => {
       return { ...state, selectedTour: action.tour };
     case DESELECT_TOUR:
       return { ...state, selectedTour: {} };
-    case POST_TOUR:
+    case ADD_TOUR:
       return {...state, tours: [...state.tours, action.tour]}  
     default:
       return state;

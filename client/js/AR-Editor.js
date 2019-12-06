@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { StyleSheet } from "react-native";
 
-import { addPoint, undoPoint }  from './store/points'
+import { addPoint }  from './store/points'
 
 import {
   ViroNode,
@@ -16,20 +16,14 @@ import {
   ViroARPlane,
   ViroMaterials
 } from "react-viro";
-import axios from "axios";
 
 
 const mapStateToProps = state => ({
-    tours: state.tours.tours,
-    selectedTour: state.tours.selectedTour,
     points: state.points.points,
     pointCount: state.points.pointCount,
   })
 
 const mapDispatchToProps = dispatch => ({
-  getAllTours: () => dispatch(getAllTours()),
-  getTour: id => dispatch(getTour(id)),
-  deselectTour: () => dispatch(deselectTour()),
   addPoint: (point) => {
     dispatch(addPoint(point))
   }
@@ -49,27 +43,11 @@ export default class unconnectedAREditor extends Component {
     this._onButtonTap = this._onButtonTap.bind(this);
   }
 
-  componentDidMount() {
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.pointCount > prevProps.pointCount) {
       this.cameraRef.current.getCameraOrientationAsync().then((orientation) => {
         this.props.addPoint(orientation.position);
       })
-    }
-  }
-
-  async getTourData(id) {
-    try {
-      const { data } = await axios.get(
-        `http://ar-guides.herokuapp.com/api/points/${id}`
-      ); //<--- change for deployment
-      this.setState({
-        points: data
-      });
-    } catch (error) {
-      console.log(error);
     }
   }
 

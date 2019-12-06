@@ -24,14 +24,12 @@ import {
   Tab,
   TabHeading,
   Header,
-  Form,
-  Item,
-  Input,
   Button
 } from "native-base";
 import { Overlay } from "react-native-elements";
 import { ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
+import Tourform from './client/js/components/tour-form';
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
 import { dropPoint, undoPoint } from "./client/js/store/points.js";
@@ -67,10 +65,8 @@ export default class App extends Component {
       page: 1,
       tourId: "",
       isVisible: false,
-      tourName: "",
-      description: ""
     };
-    this._startApp = this._startApp.bind(this);
+    
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
@@ -81,8 +77,6 @@ export default class App extends Component {
     this.tabHandler = this.tabHandler.bind(this);
     this._endButtonHandler = this._endButtonHandler.bind(this);
     this._XButtonHandler = this._XButtonHandler.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleChange = this._handleChange.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -178,9 +172,10 @@ export default class App extends Component {
             initialScene={{ scene: InitialARSceneEditor }}
             onExitViro={this._exitViro}
           />
-          <View>
+        <View>
             <Overlay isVisible={this.state.isVisible}>
-              <View style={styles.menu}>
+              <Tourform closeOverlay = {this._XButtonHandler} exitViro = {this._exitViro}/>
+              {/* <View style={styles.menu}>
                 <Form>
                   <View style={styles.Form}>
                     <Item floatingLabel>
@@ -219,7 +214,7 @@ export default class App extends Component {
                     <Text style={styles.XButtonText}>X</Text>
                   </Button>
                 </Form>
-              </View>
+              </View> */}
             </Overlay>
           </View>
           <View style={styles.backButtonPosition}>
@@ -313,28 +308,7 @@ export default class App extends Component {
       isVisible: true
     });
   }
-
-  _handleSubmit() {
-    const tourName = this.state.tourName;
-    const description = this.state.description;
-    //thunk here
-  }
-
-  _handleChange(name, value) {
-    this.setState({
-      [name]: value
-    });
-  }
-
-  _startApp(state, reason) {
-    if (state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        text: "Start Here!"
-      });
-    } else if (state == ViroConstants.TRACKING_NONE) {
-      // Handle loss of tracking
-    }
-  }
+  
 }
 
 var styles = StyleSheet.create({
@@ -458,32 +432,6 @@ var styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 22,
     fontWeight: "bold"
-  },
-  loginButton: {
-    marginTop: 25,
-    alignSelf: "center",
-    width: 100
-  },
-  XButton: {
-    position: "absolute",
-    left: -10,
-    right: 0,
-    top: 10,
-    alignItems: "flex-start",
-    width: 40,
-    height: 40,
-    marginLeft: 10
-  },
-  XButtonText: {
-    marginLeft: 10,
-    fontWeight: "bold",
-    fontSize: 25
-  },
-  SubmitbuttonText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20,
-    marginLeft: 20
   }
 });
 
