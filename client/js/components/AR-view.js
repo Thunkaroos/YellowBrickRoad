@@ -47,7 +47,7 @@ class unconnectedARView extends Component {
                 <Text
                   style = {styles.overlayText}
                 >   Make sure you're in the proper    
-                       Start Position
+                       starting position
                 
                 </Text>
                 <Form>
