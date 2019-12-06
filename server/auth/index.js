@@ -23,10 +23,7 @@ router.post('/signup', async (req, res, next) => {
   });
 
   if (created) {
-    req.logIn(user, err => {
-      if (err) return next(err);
       res.json(user);
-    });
   } else {
     res.status(401).send('An account already exist with this email'); // this user already exists, you cannot sign up
   }
@@ -43,7 +40,7 @@ router.post('/login', async (req, res, next) => {
         res.status(401).send('Wrong username and/or password')
       } else {
         console.log('Success!')
-        req.login(user, err => (err ? next(err) : res.json(user)))
+        res.json(user)
       }
     } catch (err) {
       next(err)
