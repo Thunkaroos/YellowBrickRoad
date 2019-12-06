@@ -18,18 +18,11 @@ import {
   StatusBar,
   Image
 } from "react-native";
-import {
-  Container,
-  Tabs,
-  Tab,
-  TabHeading,
-  Header,
-  Button
-} from "native-base";
+import { Container, Tabs, Tab, TabHeading, Header, Button } from "native-base";
 import { Overlay } from "react-native-elements";
 import { ViroARSceneNavigator } from "react-viro";
 import AuthForm from "./client/js/components/auth-form";
-import Tourform from './client/js/components/tour-form';
+import Tourform from "./client/js/components/tour-form";
 import ARView from "./client/js/components/AR-view";
 import TourView from "./client/js/components/tours-view";
 import { dropPoint, undoPoint } from "./client/js/store/points.js";
@@ -64,9 +57,9 @@ export default class App extends Component {
       sharedProps: sharedProps,
       page: 1,
       tourId: "",
-      isVisible: false,
+      isVisible: false
     };
-    
+
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getAREditor = this._getAREditor.bind(this);
@@ -156,7 +149,7 @@ export default class App extends Component {
             style={styles.buttons}
             underlayColor={"#00000000"}
           >
-            <Image source={require("./client/js/res/icon_left_w.png")} />
+            <Image source={require("./client/js/res/icon_left.png")} />
           </TouchableHighlight>
         </View>
       </View>
@@ -172,9 +165,12 @@ export default class App extends Component {
             initialScene={{ scene: InitialARSceneEditor }}
             onExitViro={this._exitViro}
           />
-        <View>
+          <View>
             <Overlay isVisible={this.state.isVisible}>
-              <Tourform closeOverlay = {this._XButtonHandler} exitViro = {this._exitViro}/>
+              <Tourform
+                closeOverlay={this._XButtonHandler}
+                exitViro={this._exitViro}
+              />
               {/* <View style={styles.menu}>
                 <Form>
                   <View style={styles.Form}>
@@ -308,7 +304,6 @@ export default class App extends Component {
       isVisible: true
     });
   }
-  
 }
 
 var styles = StyleSheet.create({
