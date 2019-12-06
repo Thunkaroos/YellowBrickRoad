@@ -80,6 +80,7 @@ export default class unconnectedAREditor extends Component {
             position={[0, -1, -2]}
             points={this.props.points}
             thickness={0.1}
+            opacity={0.4}
             materials={["brick"]}
           />
         </ViroNode>
