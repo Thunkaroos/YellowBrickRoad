@@ -55,8 +55,7 @@ export const getTour = id => {
 export const postTour = (name, description, userId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`http://172.16.22.47:3001/api/tours`, {
-      // const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/tours`, {
+      const {data} = await axios.post(`https://ar-guides.herokuapp.com/api/tours`, {
         name,
         description,
         // startImg,
