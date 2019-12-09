@@ -16,6 +16,8 @@
 - wall detection to hide tours behind real world objects
 - searchable and categorized tours
 - favoriting/liking/saving tours
+- adding editor features
+  - Adding info points along tours as well as AR ojects/images within tours
 
 ### Tech Stack
 
