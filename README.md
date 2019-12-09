@@ -11,9 +11,7 @@
 
 - Support for uploading images when a user finishes making a tour
 
-  ![Alt text](client/js/res/tour-form.png "Title")
-
-  ![Alt text](client/js/res/placeholder.png "Title")
+  ![Alt text](client/js/res/tour-form.png "Title") ![Alt text](client/js/res/placeholder.png "Title")
 
 - wall detection to hide tours behind real world objects
 - searchable and categorized tours
