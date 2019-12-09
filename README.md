@@ -28,5 +28,6 @@
 - Native Base
   - UI Library for react native
 - Node.js
+- Express
 - Postgres
   - Storing user created tours/directions
