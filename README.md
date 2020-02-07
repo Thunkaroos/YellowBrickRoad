@@ -10,7 +10,7 @@
 
   Please click the link below for a brief presentation and demonstration of the app, or scroll down for more information. Thanks for looking!
 
-  https://www.youtube.com/watch?v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s
+  <!-- https://www.youtube.com/watch?v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s
 
   <a 
     href="http://www.youtube.com/watch?feature=player_embedded&v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s" 
@@ -19,7 +19,15 @@
   <img 
     src="http://img.youtube.com/vi/qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s/0.jpg" 
     alt="alt" width="240" height="180" border="10" />
-  </a>
+  </a> -->
+
+  <iframe 
+  width="560" height="315" 
+  src="https://www.youtube.com/embed/qAMLpsmQKNo" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  
+  </iframe>
 
 ### MVP Goals:
 
