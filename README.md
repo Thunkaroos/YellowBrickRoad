@@ -21,7 +21,7 @@
     alt="alt" width="240" height="180" border="10" />
   </a> -->
 
-  [![Everything Is AWESOME](https://img.youtube.com/vi/qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s "Everything Is AWESOME")
+  [![YellowBrickRoad Presentation Video](https://img.youtube.com/vi/qAMLpsmQKNo/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo "YellowBrickRoad Presentation Video")
 
 ### MVP Goals:
 
