@@ -21,13 +21,7 @@
     alt="alt" width="240" height="180" border="10" />
   </a> -->
 
-  <iframe 
-  width="560" height="315" 
-  src="https://www.youtube.com/embed/qAMLpsmQKNo" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-  
-  </iframe>
+  [![Everything Is AWESOME](https://img.youtube.com/vi/qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s "Everything Is AWESOME")
 
 ### MVP Goals:
 
