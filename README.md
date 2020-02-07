@@ -11,9 +11,7 @@
   Please click the link below for a brief presentation and demonstration of the app, or scroll down for more information. Thanks for looking!
 
 
-
   [![YellowBrickRoad Presentation Video](https://img.youtube.com/vi/qAMLpsmQKNo/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo "YellowBrickRoad Presentation Video")
-
 
 
 ### MVP Goals:
