@@ -1,6 +1,25 @@
 # Yellow Brick Road
 
-## An AR app for creating and experiencing tours in AR.
+## A mobile app for creating and experiencing tours in AR.
+
+  Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
+  
+  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D line in the environment (viewed through the user's device) that they can then follow from point to point. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
+  
+  Future updates will allow for increased interactivity within a given tour, such as helpful animations or modals that provide landmark descriptions.
+
+  Please click the link below for a brief presentation and demonstration of the app, or scroll down for more information. Thanks for looking!
+
+  https://www.youtube.com/watch?v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s
+
+  <a 
+    href="http://www.youtube.com/watch?feature=player_embedded&v=qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s" 
+    target="_blank">
+  
+  <img 
+    src="http://img.youtube.com/vi/qAMLpsmQKNo&list=PLx0iOsdUOUmnTCO5wLzNNeaLbbZLlngp6&index=22&t=0s/0.jpg" 
+    alt="alt" width="240" height="180" border="10" />
+  </a>
 
 ### MVP Goals:
 
