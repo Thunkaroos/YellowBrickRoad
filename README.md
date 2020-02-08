@@ -1,9 +1,9 @@
 # Yellow Brick Road
 
-<hr />
-
 
 ## A mobile app for creating and experiencing tours in Augmented Reality
+
+<br />
 
 
 
