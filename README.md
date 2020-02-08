@@ -1,8 +1,10 @@
 # Yellow Brick Road
 
+<hr />
 
 
 ## A mobile app for creating and experiencing tours in Augmented Reality
+
 
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
