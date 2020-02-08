@@ -1,6 +1,9 @@
 # Yellow Brick Road
 
+
+
 ## A mobile app for creating and experiencing tours in Augmented Reality
+
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
   
@@ -16,6 +19,7 @@
 
 ### MVP Goals:
 
+
 - Create an app that provides guided tours/directions in AR
 - Allow users to create their own tours and add descriptions/relevant metadata
 - Users can browse and check out uploaded tours
@@ -23,12 +27,14 @@
 
 ### Stretch Goals
 
+
 - Allow users to take and upload "start here" images for each tour
 - Directions for subways, streets, and museums
 - Google maps integration
 - Add support for informational modals, animated prompts
 
 ### Tech Stack
+
 
 - React Native
   - Mobile Framework we used in order to develop concurrently for IOS and Android
@@ -43,4 +49,4 @@
   - We created an Express server to handle requests from the mobile app and serve the appropriate data from our database
 
 - PostgreSQL
-  - Relational database for storing user created tours/directions
+  - Relational database for storing user created tours and directions
