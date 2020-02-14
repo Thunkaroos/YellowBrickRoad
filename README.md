@@ -16,7 +16,7 @@
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
   
-  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D line of markers in the environment (viewed through the user's device) that they can follow from point to point. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
+  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D highlighted trail of markers in the environment (viewed through the user's device). They can follow from point to point. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
   
   Future updates will allow for increased interactivity within a given tour, such as helpful animations or modals that provide landmark descriptions.
 
@@ -59,6 +59,7 @@
 
 
 - Allow users to take and upload "start here" images for each tour
+- Add categorization, searching, and filtering for tour browsing/searching
 - Directions for subways, streets, and museums
 - Google maps integration
 - Add support for informational modals, animated prompts
@@ -76,7 +77,7 @@
   - UI library for creating menus, buttons, etc.
 
 - Node.js & Express
-  - We created an Express server to handle requests from the mobile app and serve the appropriate data from our database
+  - We created an Express server to handle requests from the app and serve the appropriate data from our database
 
 - PostgreSQL
   - Relational database for storing user created tours and directions
@@ -84,6 +85,10 @@
 
 ### How It Works
 
-#### Create Tour
+There are 3 sections of the app: Tours, Editor, and Profile.
+
+In the Tours tab, a user can view the available tours. Selecting a tour will bring up it's profile, containing more information, an image of the starting view, and buttons to either start the tour or navigate back to the list.
+
+
 
 - 
