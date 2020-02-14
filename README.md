@@ -27,23 +27,23 @@
 
   <br/>
 
-  ### Authors
+  ### Designed and Built by
 
   #### Alex Paul
-    -[GitHub](github.com/apaul14)
-    -[LinkedIn](https://www.linkedin.com/in/alexpaul53)
+    [GitHub](github.com/apaul14)
+    [LinkedIn](https://www.linkedin.com/in/alexpaul53)
     
   #### Mark Dziwirek 
-    -[GitHub](https://github.com/MarkDz)
-    -[LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
+    [GitHub](https://github.com/MarkDz)
+    [LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
 
   #### Josh Grossman
-    -[GitHub](https://github.com/Josh1794)
-    -[LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
+    [GitHub](https://github.com/Josh1794)
+    [LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
 
   #### Christian Gerace
-    -[GitHub](https://github.com/cgerace)
-    -[LinkedIn](https://www.linkedin.com/in/christiangerace/)
+    [GitHub](https://github.com/cgerace)
+    [LinkedIn](https://www.linkedin.com/in/christiangerace/)
   
 
 
@@ -62,7 +62,10 @@
 - Add categorization, searching, and filtering for tour browsing/searching
 - Directions for subways, streets, and museums
 - Google maps integration
-- Add support for informational modals, animated prompts
+- Add support for informational modals, AR objects, and animated prompts
+- wall detection to hide tours behind real world boundaries and obstacles
+- favoriting/liking/saving tours
+
 
 ### Tech Stack
 
@@ -85,9 +88,9 @@
 
 ### How It Works
 
-There are 3 sections of the app: Tours, Editor, and Profile.
+The menus portion of the app consists of 3 menu tabs : Tours, Editor, and Profile.
 
-In the Tours tab, a user can view the available tours. Selecting a tour will bring up it's profile, containing more information, an image of the starting view, and buttons to either start the tour or navigate back to the list.
+In the Tours tab, a user can view the available tours. Selecting a tour will bring up it's profile, containing a description of the tour, an image of the starting view, and buttons to either start the tour or navigate back to the list.
 
 
 
