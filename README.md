@@ -9,6 +9,7 @@
 - [Authors](#Authors)
 - [Goals](#MVP-Goals)
 - [Tech Stack](#Tech-Stack)
+- [How it Works](#How-it-Works)
 
 <br />
 
@@ -16,11 +17,11 @@
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
   
-  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D highlighted trail of markers in the environment (viewed through the user's device). They can follow from point to point. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
+  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D highlighted trail of markers in the environment (viewed through the user's device). Users can follow the tour from point to point and the view will adjust as the user moves through the tour environment. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
   
   Future updates will allow for increased interactivity within a given tour, such as helpful animations or modals that provide landmark descriptions.
 
-  Please click the picture below for a brief presentation and demonstration of the app, or scroll down for more information. Thanks for looking!
+  Please click the picture below for a brief presentation and demonstration video, or scroll down for more information. Thanks for looking!
 
 
   [![YellowBrickRoad Presentation Video](https://img.youtube.com/vi/qAMLpsmQKNo/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo "YellowBrickRoad Presentation Video")
@@ -29,19 +30,19 @@
 
   ### Designed and Built by
 
-  #### Alex Paul
+  * Alex Paul
     [GitHub](github.com/apaul14)
     [LinkedIn](https://www.linkedin.com/in/alexpaul53)
     
-  #### Mark Dziwirek 
+  * Mark Dziwirek 
     [GitHub](https://github.com/MarkDz)
     [LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
 
-  #### Josh Grossman
+  * Josh Grossman
     [GitHub](https://github.com/Josh1794)
     [LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
 
-  #### Christian Gerace
+  * Christian Gerace
     [GitHub](https://github.com/cgerace)
     [LinkedIn](https://www.linkedin.com/in/christiangerace/)
   
@@ -88,10 +89,23 @@
 
 ### How It Works
 
-The menus portion of the app consists of 3 menu tabs : Tours, Editor, and Profile.
+The menu portion of the app consists of 3 tabs: Tours, Editor, and Profile.
+
+The Profile tab allows existing users to sign in to their account or new users to create a profile. Once signed in, users can view the tours they've created as well as start the Editor. The Editor can only be used by signed in users, this to ensure tours are properly associated with their creators. 
+
+![Profile Tab](client/js/res/Profile_Tab.png "Profile Tab")
+![Signed In](client/js/res/tSigned_In_Page.png "Signed In")
+
+
 
 In the Tours tab, a user can view the available tours. Selecting a tour will bring up it's profile, containing a description of the tour, an image of the starting view, and buttons to either start the tour or navigate back to the list.
 
+![Tours Tab](client/js/res/Tours_Tab.png "Tours Tab")
+![Single Tour View](client/js/res/Single_Tour_View.png "Single Tour View")
+
+
+
+Before starting the chosen tour, the user should position their phone so the view through their camera matches the starting image, this is important to ensure accurate placement of the tour points when they are loaded into the AR environment. 
 
 
 - 
