@@ -6,7 +6,7 @@
 <br />
 
 - [Introduction](#Introduction)
-- [Authors](#Authors)
+- [Created By](#Designed-and-Built-by)
 - [Goals](#MVP-Goals)
 - [Tech Stack](#Tech-Stack)
 - [How it Works](#How-it-Works)
@@ -31,20 +31,20 @@
   ### Designed and Built by
 
   * Alex Paul
-    [GitHub](github.com/apaul14)
-    [LinkedIn](https://www.linkedin.com/in/alexpaul53)
+     - [GitHub](https://github.com/apaul14)
+     - [LinkedIn](https://www.linkedin.com/in/alexpaul53)
     
   * Mark Dziwirek 
-    [GitHub](https://github.com/MarkDz)
-    [LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
+     - [GitHub](https://github.com/MarkDz)
+     - [LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
 
   * Josh Grossman
-    [GitHub](https://github.com/Josh1794)
-    [LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
+     - [GitHub](https://github.com/Josh1794)
+     - [LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
 
   * Christian Gerace
-    [GitHub](https://github.com/cgerace)
-    [LinkedIn](https://www.linkedin.com/in/christiangerace/)
+     - [GitHub](https://github.com/cgerace)
+     - [LinkedIn](https://www.linkedin.com/in/christiangerace/)
   
 
 
@@ -94,7 +94,7 @@ The menu portion of the app consists of 3 tabs: Tours, Editor, and Profile.
 The Profile tab allows existing users to sign in to their account or new users to create a profile. Once signed in, users can view the tours they've created as well as start the Editor. The Editor can only be used by signed in users, this to ensure tours are properly associated with their creators. 
 
 ![Profile Tab](client/js/res/Profile_Tab.png "Profile Tab")
-![Signed In](client/js/res/tSigned_In_Page.png "Signed In")
+![Signed In](client/js/res/Signed_In_Page.png "Signed In")
 
 
 
@@ -102,7 +102,6 @@ In the Tours tab, a user can view the available tours. Selecting a tour will bri
 
 ![Tours Tab](client/js/res/Tours_Tab.png "Tours Tab")
 ![Single Tour View](client/js/res/Single_Tour_View.png "Single Tour View")
-
 
 
 Before starting the chosen tour, the user should position their phone so the view through their camera matches the starting image, this is important to ensure accurate placement of the tour points when they are loaded into the AR environment. 
