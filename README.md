@@ -5,7 +5,14 @@
 
 <br />
 
+- [Introduction](#Introduction)
+- [Authors](#Authors)
+- [Goals](#MVP-Goals)
+- [Tech Stack](#Tech-Stack)
 
+<br />
+
+### Introduction
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
   
@@ -17,6 +24,27 @@
 
 
   [![YellowBrickRoad Presentation Video](https://img.youtube.com/vi/qAMLpsmQKNo/0.jpg)](https://www.youtube.com/watch?v=qAMLpsmQKNo "YellowBrickRoad Presentation Video")
+
+  <br/>
+
+  ### Authors
+
+  #### Alex Paul
+    -[GitHub](github.com/apaul14)
+    -[LinkedIn](https://www.linkedin.com/in/alexpaul53)
+    
+  #### Mark Dziwirek 
+    -[GitHub](https://github.com/MarkDz)
+    -[LinkedIn](https://www.linkedin.com/in/mark-dziwirek/)
+
+  #### Josh Grossman
+    -[GitHub](https://github.com/Josh1794)
+    -[LinkedIn](https://www.linkedin.com/in/joshua-grossman17/)
+
+  #### Christian Gerace
+    -[GitHub](https://github.com/cgerace)
+    -[LinkedIn](https://www.linkedin.com/in/christiangerace/)
+  
 
 
 ### MVP Goals:
@@ -39,16 +67,23 @@
 
 
 - React Native
-  - Mobile Framework we used in order to develop concurrently for IOS and Android
+  - Mobile Framework we used to develop our application concurrently for IOS and Android devices
 
 - ViroReact
   - Platform that utilizes Apple's ARKit or Android's ARCore to implement AR functionality such as tracking users and displaying tour points
 
 - Native Base
-  - UI library for React Native for creating menus, buttons, etc.
+  - UI library for creating menus, buttons, etc.
 
 - Node.js & Express
   - We created an Express server to handle requests from the mobile app and serve the appropriate data from our database
 
 - PostgreSQL
   - Relational database for storing user created tours and directions
+
+
+### How It Works
+
+#### Create Tour
+
+- 
