@@ -17,7 +17,7 @@
 
   Hello! Welcome to Yellow Brick Road. Yellow Brick Road is a mobile application that allows users to create, share, and experience tours in Augmented Reality. 
   
-  Instead of showing users dierctions on a map, Yellow Brick road presents users a 3D highlighted trail of markers in the environment (viewed through the user's device). Users follow the tour from point to point, and the view adjusts as the user progresses along the tour. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
+  Instead of showing users dierctions on a map, Yellow Brick Road presents users a 3D highlighted trail of markers in the environment (viewed through the user's device). Users follow the tour from point to point, and the view adjusts as the user progresses along the tour. The app relies on the relative position of the users's camera for tracking, rather than GPS. This allows it to succeed in spaces where other navigation apps do not, such as indoors or underground areas. 
   
   Future updates will allow for increased interactivity within a given tour, such as helpful animations or modals that provide landmark descriptions.
 
@@ -64,8 +64,8 @@
 - Directions for subways, streets, and museums
 - Google maps integration
 - Add support for informational modals, AR objects, and animated prompts
-- wall detection to hide tours behind real world boundaries and obstacles
-- favoriting/liking/saving tours
+- Wall detection to hide tour points behind real world boundaries and obstacles
+- Favoriting/liking/saving tours
 
 
 ### Tech Stack
@@ -106,6 +106,6 @@ In the Tours tab, a user can view all available tours. Selecting a tour will bri
 
 Before starting the chosen tour, the user should position their phone so the view through their camera matches the starting image, this is important to ensure accurate placement of the tour points when they are loaded into the AR environment. 
 
-After the tour loads there is a brief calibration, then the tour points will be visible and the user can begin following along the route. Tap the arrow button on the top left of the screen to exit to the menu.
+After the tour loads there is a brief calibration, the tour points will appear, and the user can begin following along the route. Tap the arrow button on the top left of the screen to exit to the menu.
 
-To create a tour, stand in the desired starting position with the rear-facing camera pointed forwards. Tap the Create Tour button, there will be another prompt to verify the correct start position. The first point is generated immediately after the editor is initialized, hence the importance of being properly positioned when starting the tour editor. After the editor loads, the user can walk in any direction, tapping Drop to connect the previous marker to a new marker at the current location of the phone. If a mistake is made, tapping the top right arrow will undo the previous point. When the tour is completed, tap End. A modal will appear where the user can supply a title and brief description of their tour. Hit Submit, and the tour will be saved and made available for other users to experience.
+To create a tour, stand in the desired starting position with the rear-facing camera pointed forwards. Tap the Create Tour button, there will be another prompt to verify the correct start position. The first point is generated immediately after the editor is initialized, hence the importance of being properly positioned when starting the tour editor. After the editor loads, the user can walk in any direction, tapping Drop to connect the previous marker to a new marker at the current location of the device. If a mistake is made, tapping the top right arrow will undo the previous point. When the tour is completed, tap End. A modal will appear where the user can supply a title and brief description of their tour. Hit Submit, and the tour will be saved and made available for other users to experience.
