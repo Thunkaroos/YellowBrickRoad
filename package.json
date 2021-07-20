@@ -18,7 +18,7 @@
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react-native": "0.62.3",
     "react-native-axios": "^0.17.1",
     "react-native-elements": "^1.2.7",
     "react-native-ionicons": "^4.6.3",
